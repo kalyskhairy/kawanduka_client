@@ -38,7 +38,7 @@
                 </button>
             </div>
             <div class="text-center mt-5">
-                <a href="/">Lupa password ?</a>
+                <a href="/account/forget-password">Lupa password ?</a>
             </div>
         </div>
         <div class="ps-form__footer">

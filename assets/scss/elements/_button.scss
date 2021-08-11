@@ -112,6 +112,10 @@ button.ps-btn {
             background-color: $color-1st;
         }
     }
+    
+    &--batalkan {
+        color: $color-gray;
+    }
 
     &--fullwidth {
         width: 100%;
