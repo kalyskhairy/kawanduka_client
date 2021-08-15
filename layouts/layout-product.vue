@@ -5,7 +5,8 @@
                 <header-default />
                 <header-mobile />
                 <nuxt></nuxt>
-                <footer-fullwidth />
+                <!-- <footer-fullwidth /> -->
+                <footer-default />
                 <navigation-list />
                 <mobile-drawer />
                 <notify/>
@@ -21,6 +22,7 @@ import NavigationList from '~/components/shared/mobile/NavigationList';
 import MobileDrawer from '~/components/shared/mobile/MobileDrawer';
 import FooterFullwidth from '~/components/shared/footers/FooterFullwidth';
 import Notify from '~/components/elements/commons/notify';
+import FooterDefault from '~/components/shared/footers/FooterDefault';
 export default {
     name: 'layout-product',
     components: {
@@ -29,7 +31,8 @@ export default {
         NavigationList,
         HeaderMobile,
         HeaderDefault,
-        Notify
+        Notify,
+        FooterDefault
     }
 };
 </script>

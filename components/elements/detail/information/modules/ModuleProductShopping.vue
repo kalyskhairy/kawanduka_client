@@ -18,14 +18,14 @@
             </div>
         </figure>
         <a
-            class="ps-btn ps-btn--black"
+            class="ps-btn ps-btn--blue"
             href="#"
             @click.prevent="handleAddToCart"
         >
-            Add to cart
+            Masukan Keranjang
         </a>
         <a class="ps-btn" href="#" @click.prevent="">
-            Buy Now
+            Beli Sekarang
         </a>
         <div class="ps-product__actions">
             <a href="#">

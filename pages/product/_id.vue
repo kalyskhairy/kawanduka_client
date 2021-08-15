@@ -4,17 +4,11 @@
         <div class="ps-page--product">
             <div class="ps-container">
                 <div class="ps-page__container">
-                    <div class="ps-page__left">
+                    <div class="ps-page">
                         <product-detail-fullwidth v-if="product !== null" />
                     </div>
-                    <div class="ps-page__right">
-                        <product-widgets
-                            v-if="collections !== null"
-                            collection-slug="widget_same_brand"
-                        />
-                    </div>
                 </div>
-                <customer-bought
+                <!-- <customer-bought
                     v-if="collections !== null"
                     layout="fullwidth"
                     collection-slug="customer_bought"
@@ -23,10 +17,10 @@
                     v-if="collections !== null"
                     layout="fullwidth"
                     collection-slug="shop-recommend-items"
-                />
+                /> -->
             </div>
         </div>
-        <newsletters layout="fullwidth"/>
+        <!-- <newsletters layout="fullwidth"/> -->
     </div>
 </template>
 
@@ -40,7 +34,7 @@ import ProductWidgets from '~/components/partials/product/ProductWidgets';
 import LayoutProduct from '~/layouts/layout-product';
 import Newsletters from '~/components/partials/commons/Newsletters';
 export default {
-    layout: 'layout-product',
+    layout: 'default',
     transition: 'zoom',
     components: {
         Newsletters,

@@ -2,11 +2,13 @@
     <div class="ps-product__info">
         <module-product-info :product="product" />
 
+        <module-stock-detail :product="product" />
+
         <module-product-detail-desc :product="product" />
 
         <module-product-shopping :product="product" />
 
-        <module-product-detail-specification />
+        <!-- <module-product-detail-specification /> -->
 
         <module-product-detail-sharing />
     </div>
@@ -17,6 +19,7 @@ import { mapState } from 'vuex';
 import ModuleProductDetailSharing from '~/components/elements/detail/information/modules/ModuleProductDetailSharing';
 import ModuleProductDetailSpecification from '~/components/elements/detail/information/modules/ModuleProductDetailSpecification';
 import ModuleProductDetailDesc from '~/components/elements/detail/information/modules/ModuleProductDetailDesc';
+import ModuleStockDetail from '~/components/elements/detail/information/modules/ModuleStockDetail';
 import Rating from '~/components/elements/Rating';
 import ModuleProductShopping from '~/components/elements/detail/information/modules/ModuleProductShopping';
 import ModuleProductInfo from '~/components/elements/detail/information/modules/ModuleProductInfo';
@@ -29,7 +32,8 @@ export default {
         Rating,
         ModuleProductDetailDesc,
         ModuleProductDetailSpecification,
-        ModuleProductDetailSharing
+        ModuleProductDetailSharing,
+        ModuleStockDetail
     },
     computed: {
         ...mapState({

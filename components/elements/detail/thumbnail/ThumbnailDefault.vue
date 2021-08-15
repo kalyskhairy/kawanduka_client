@@ -3,7 +3,7 @@
         <div class="ps-product__thumbnail " data-vertical="true">
             <figure>
                 <div class="ps-wrapper">
-                    <!-- Gallery-->
+                    <!-- Gallery -->
                     <div class="ps-product__gallery">
                         <div
                             class=" ps-carousel inside swiper"
@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </figure>
-            <!--Variants-->
+            <!-- Variants -->
             <div class="ps-product__variants">
                 <div
                     class="ps-carousel swiper"

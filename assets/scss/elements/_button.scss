@@ -154,6 +154,21 @@ button.ps-btn {
         font-size: 1.6rem;
     }
 
+    &.ps-btn--blue {
+        color: #fff;
+        background-color: #40BFFF;
+
+        &.ps-btn--outline {
+            background-color: transparent;
+            border: 2px solid $color-heading;
+            color: $color-heading;
+
+            &:hover {
+                background-color: $color-heading;
+                color: #ffffff;
+            }
+        }
+    }
     &.ps-btn--black {
         color: #fff;
         background-color: $color-heading;

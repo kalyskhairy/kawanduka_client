@@ -13,7 +13,7 @@
                                 </figure>
                             </div>
                             <div class="ps-widget__content">
-                                <AccountLinks :links="accountLinks" />
+                                <AccountLinks :links="tempLinks" />
                             </div>
                         </aside>
                     </div>
@@ -37,6 +37,39 @@ export default {
     components: { AccountLinks },
     data() {
         return {
+            tempLinks: [
+                {
+                    text: 'Pesanan Saya',
+                    url: '/account/user-information',
+                    icon: 'icon-user'
+                },
+                {
+                    text: 'Notifications',
+                    url: '/account/notifications',
+                    icon: 'icon-alarm-ringing'
+                },
+                {
+                    text: 'Invoices',
+                    url: '/account/invoices',
+                    icon: 'icon-papers'
+                },
+                {
+                    text: 'Address',
+                    url: '/account/addresses',
+                    icon: 'icon-map-marker'
+                },
+                {
+                    text: 'Recent Viewed Product',
+                    url: '/account/recent-viewed-product',
+                    icon: 'icon-store',
+                    // active: true
+                },
+                {
+                    text: 'Wishlist',
+                    url: '/account/wishlist',
+                    icon: 'icon-heart'
+                }
+            ],
             accountLinks: [
                 {
                     text: 'Account Information',

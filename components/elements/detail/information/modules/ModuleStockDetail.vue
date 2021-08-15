@@ -1,12 +1,39 @@
 <template lang="html">
     <div class="ps-product__desc">
+        <div class="ps-list--dot">
+            <div class="col-lg-12 col-md-12">
+                <div class="row">
+                    <div class="col-2">
+                        <p>
+                            Stock
+                        </p>
+                    </div>
+                    <div class="col-10">
+                        <p>
+                            : 100 Buah
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <p>
+                            Berat
+                        </p>
+                    </div>
+                    <div class="col-10">
+                        <p>
+                            : 1000 Gram
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- <p>
             Sold By:
             <nuxt-link to="/shop">
                 <strong> {{ product.vendor }}</strong>
             </nuxt-link>
         </p> -->
-        <h4>Deskripsi</h4>
         <!-- <ul class="ps-list--dot">
             <li>Unrestrained and portable active stereo speaker</li>
             <li>Free from the confines of wires and chords</li>
@@ -16,11 +43,6 @@
             </li>
             <li>3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X</li>
         </ul> -->
-        <div class="ps-list--dot">
-            <p>
-                Ad velit voluptate laboris excepteur ex. Ea tempor veniam cillum ea cillum anim fugiat pariatur qui mollit
-            </p>
-        </div>
     </div>
 </template>
 
