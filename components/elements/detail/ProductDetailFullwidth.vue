@@ -5,7 +5,12 @@
             <information-default />
         </div>
         <hr />
+        <section
+        class="ps-product-list ps-section--carousel-outside"
+        id="market2-technology"
+        >
             <default-review />
+        </section>
         <product-service 
         v-if="categories !== null"
         collection-slug="clothing-and-parel"

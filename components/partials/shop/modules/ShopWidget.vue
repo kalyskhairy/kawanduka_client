@@ -22,7 +22,7 @@
             </ul>
         </aside>
         <aside class="widget widget_shop">
-            <h4 class="widget-title">
+            <!-- <h4 class="widget-title">
                 {{ $t('shop.widget.byBrands') }}
             </h4>
             <figure>
@@ -34,7 +34,7 @@
                     :key="brand.id"
                     @click="handleFilterByBrand"
                 />
-            </figure>
+            </figure> -->
             <figure>
                 <div class="row">
                     <div class="col-lg-12">

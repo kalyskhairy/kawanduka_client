@@ -5,7 +5,7 @@
                 <div class="col-12">
                     <h4 class="widget-title">
                         <!-- {{ $t('shop.widget.categories') }} -->
-                        Lokasi
+                        {{ title }}
                     </h4>
                     <div class="row">
                         <div class="col-12" v-for="(value, index) in data" :key="index">
@@ -24,7 +24,14 @@ import { getColletionBySlug } from '~/utilities/product-helper';
 import { serializeQuery } from '~/repositories/Repository';
 
 export default {
-    name: 'ShopWidget',
+    name: 'BarShop',
+    props: {
+        title: {
+            type: String,
+            default: ''
+        },
+        data: [Array, Object]
+    },
     computed: {
         ...mapState({
             categories: state => state.product.categories,
@@ -37,23 +44,7 @@ export default {
     },
     data() {
         return {
-            data: [
-                {
-                    nama: 'Jakarta'
-                },
-                {
-                    nama: 'Bandung'
-                },
-                {
-                    nama: 'Surabaya'
-                },
-                {
-                    nama: 'Tangerang'
-                },
-                {
-                    nama: 'Banten'
-                },
-            ]
+            
         };
     },
     methods: {

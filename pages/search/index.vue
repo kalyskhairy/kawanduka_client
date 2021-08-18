@@ -7,7 +7,14 @@
                     <shop-widget
                         v-if="categories !== null && brands !== null"
                     />
-                    <location-widget />
+                    <bar-shop
+                    :title="'Lokasi'"
+                    :data="lokasi"
+                    />
+                    <bar-shop
+                    :title="'Agama'"
+                    :data="agama"
+                    />
                 </div>
 
                 <div class="ps-layout__right">
@@ -24,7 +31,7 @@ import BreadCrumb from '~/components/elements/BreadCrumb';
 import LayoutShop from '~/components/partials/shop/LayoutShop';
 import SearchResult from '~/components/partials/search/SearchResult';
 import ShopWidget from '~/components/partials/shop/modules/ShopWidget';
-import LocationWidget from '~/components/partials/shop/modules/LocationWidget';
+import BarShop from '~/components/partials/shop/modules/BarShop';
 
 export default {
     transition() {
@@ -35,7 +42,7 @@ export default {
         SearchResult,
         LayoutShop,
         BreadCrumb,
-        LocationWidget
+        BarShop
     },
 
     computed: {
@@ -60,6 +67,40 @@ export default {
                 {
                     text: 'Search Result'
                 }
+            ],
+            lokasi: [
+                {
+                    nama: 'Jakarta'
+                },
+                {
+                    nama: 'Bandung'
+                },
+                {
+                    nama: 'Surabaya'
+                },
+                {
+                    nama: 'Tangerang'
+                },
+                {
+                    nama: 'Banten'
+                },
+            ],
+            agama: [
+                {
+                    nama: 'Islam'
+                },
+                {
+                    nama: 'Kristen'
+                },
+                {
+                    nama: 'Katolik'
+                },
+                {
+                    nama: 'Hindu'
+                },
+                {
+                    nama: 'Budha'
+                },
             ]
         };
     },

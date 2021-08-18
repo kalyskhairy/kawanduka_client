@@ -13,7 +13,7 @@
                                 </figure>
                             </div>
                             <div class="ps-widget__content">
-                                <AccountLinks :links="tempLinks" />
+                                <AccountLinks :links="links" />
                             </div>
                         </aside>
                     </div>
@@ -89,43 +89,13 @@ import TabMyOrder from './modules/TabMyOrder';
 export default {
     name: 'UserInformation',
     components: { AccountLinks,TabMyOrder },
+    props: {
+        links: [Array, Object]
+    },
     data() {
         return {
             items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
             search: '',
-            tempLinks: [
-                {
-                    text: 'Pesanan Saya',
-                    url: '/account/my-order',
-                    icon: 'icon-user'
-                },
-                {
-                    text: 'Notifications',
-                    url: '/account/notifications',
-                    icon: 'icon-alarm-ringing'
-                },
-                {
-                    text: 'Invoices',
-                    url: '/account/invoices',
-                    icon: 'icon-papers'
-                },
-                {
-                    text: 'Address',
-                    url: '/account/addresses',
-                    icon: 'icon-map-marker'
-                },
-                {
-                    text: 'Recent Viewed Product',
-                    url: '/account/recent-viewed-product',
-                    icon: 'icon-store',
-                    // active: true
-                },
-                {
-                    text: 'Wishlist',
-                    url: '/account/wishlist',
-                    icon: 'icon-heart'
-                }
-            ],
         };
     }
 };
