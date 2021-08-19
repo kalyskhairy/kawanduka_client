@@ -22,10 +22,19 @@
                     <div class="ps-page__content">
                         <div class="ps-section--account-setting">
                             <div class="ps-section__header">
-                                <h3>Notifications</h3>
+                                <h3>Pesanan Saya</h3>
                             </div>
                             <div class="ps-section__content">
-                                <TableNotifications />
+                                <v-tabs>
+                                    <v-tab :href="`#pembeli`">Pembeli</v-tab>
+                                    <v-tab-item :value="`pembeli`">
+                                        <card-notifications :data="dataPembeli"/>
+                                    </v-tab-item>
+                                    <v-tab :href="`#penjual`">Penjual</v-tab>
+                                    <v-tab-item :value="`penjual`">
+                                        <card-notifications :data="dataPenjual"/>
+                                    </v-tab-item>
+                                </v-tabs>
                             </div>
                         </div>
                     </div>
@@ -37,10 +46,10 @@
 
 <script>
 import AccountLinks from './modules/AccountLinks';
-import TableNotifications from './modules/TableNotifications';
+import CardNotifications from './modules/CardNotifications';
 export default {
     name: 'InvoiceDetail',
-    components: { TableNotifications, AccountLinks },
+    components: { CardNotifications, AccountLinks },
     data() {
         return {
             accountLinks: [
@@ -75,6 +84,30 @@ export default {
                     url: '/account/wishlist',
                     icon: 'icon-heart'
                 }
+            ],
+            dataPembeli: [
+                {
+                    title: 'Transaksi Peti Mayat Diterima',
+                    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor',
+                    date: 'April 30 2021'
+                },
+                {
+                    title: 'Transaksi Prime Rose Diterima',
+                    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor',
+                    date: 'April 30 2021'
+                },
+            ],
+            dataPenjual: [
+                {
+                    title: 'Transaksi Peti Mayat Diterima',
+                    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor',
+                    date: 'April 30 2021'
+                },
+                {
+                    title: 'Transaksi Prime Rose Diterima',
+                    description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor',
+                    date: 'April 30 2021'
+                },
             ]
         };
     }

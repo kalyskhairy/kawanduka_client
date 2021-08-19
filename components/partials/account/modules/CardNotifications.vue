@@ -1,37 +1,30 @@
 <template lang="html">
-    <div class="table-repsonsive">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="item in tableData" :key="item.id">
-                    <td style="width: 70%">{{ item.title }}</td>
-                    <td>{{ item.dateCreate }}</td>
-                    <td class="text-center">
-                        <button
-                            v-if="item.tag === 'sale'"
-                            class="btn  btn-success"
-                        >
-                            {{ item.tag }}
-                        </button>
-                        <button v-else class="btn  btn-warning">
-                            {{ item.tag }}
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div>
+    <div class="card" v-for="(value, index) in data" :key="index">
+        <div class="card-body">
+            <div class="row rem">
+                <div class="col-lg-10 col-md-10">
+                    <h4>{{ value.title }}</h4>
+                    <p>{{ value.description }}</p>
+                    <strong>{{ value.date }}</strong>
+                </div>
+                <div class="col-lg-2 col-md-2 center">
+                    <v-checkbox></v-checkbox>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 </template>
 
 <script>
 export default {
     name: 'TableInvoices',
+    props: {
+        data: {
+            type: [Array, Object]
+        }
+    },
     data() {
         return {
             tableData: [
@@ -68,4 +61,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.rem {
+    margin: 2rem;
+}
+</style>

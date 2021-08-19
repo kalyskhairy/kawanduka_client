@@ -33,7 +33,7 @@ export default {
             tempLinks: [
                 {
                     text: 'Pesanan Saya',
-                    url: '/account/user-information',
+                    url: '/account/my-order',
                     icon: 'icon-user'
                 },
                 {
