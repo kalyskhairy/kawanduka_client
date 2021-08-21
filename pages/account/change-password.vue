@@ -12,45 +12,60 @@
                                     <div class="mt-10 mb-10">
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 text-center">
-                                                <h3>Mohon berikan rating produk atau jasa sesuai tingkat kepuasan Anda.</h3>
+                                                <h3>Ubah Password</h3>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 text-center">
-                                                <v-rating
-                                                empty-icon="fa fa-star-o"
-                                                full-icon="fa fa-star"
-                                                hover
-                                                length="5"
-                                                size="32"
-                                                :value="rating"
-                                                ></v-rating>
+                                                <h6>Untuk keamanan akun Anda, mohon untuk tidak menyebarkan password Anda ke orang lain</h6>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12">
-                                                <label>Tulis Ulasan Anda</label>
+                                                <label>Password Lama</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 text-center">
-                                                <v-textarea
-                                                filled
-                                                name="input-7-4"
-                                                label="Filled textarea"
-                                                value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-                                                ></v-textarea>
+                                                <v-text-field
+                                                v-model="oldPassword"
+                                                :counter="18"
+                                                label="Password Lama"
+                                                outlined
+                                                required
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12">
-                                                <label>Tambahkan Foto</label>
+                                                <label>Password Baru</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 text-center">
-                                                <v-file-input
-                                                ></v-file-input>
+                                                <v-text-field
+                                                v-model="newPassword"
+                                                :counter="18"
+                                                label="Password Baru"
+                                                outlined
+                                                required
+                                                ></v-text-field>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <label>Konfirmasi Password Baru</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 text-center">
+                                                <v-text-field
+                                                v-model="newPasswordConfirmation"
+                                                :counter="18"
+                                                label="Konfirmasi Password Baru"
+                                                outlined
+                                                required
+                                                ></v-text-field>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -99,7 +114,9 @@ export default {
     },
     data: () => {
         return {
-            rating: 3,
+            oldPassword: '',
+            newPasswordConfirmation: '',
+            newPassword: '',
             breadCrumb: [
                 {
                     text: 'Home',

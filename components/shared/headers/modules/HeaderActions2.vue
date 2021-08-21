@@ -10,16 +10,69 @@
         <mini-cart />
         <div class="ps-block--user-header">
             <div class="ps-block__left">
-                <i class="icon-user"></i>
+                <div class="text-center">
+                    <v-menu
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    offset-x
+                    >
+                    <template v-slot:activator="{ on, attrs }">
+                        <i class="icon-user"
+                        v-bind="attrs"
+                        v-on="on"
+                        ></i>
+                    </template>
+
+                    <v-card>
+                        <v-list>
+                        <v-list-item>
+                            <nuxt-link to="/account/change-profile">
+                                Ubah Profil
+                            </nuxt-link>
+                        </v-list-item>
+
+                        <v-list-item>
+                            <nuxt-link to="/account/register">
+                                Akun Seller
+                            </nuxt-link>
+                        </v-list-item>
+
+                        <v-list-item>
+                            <nuxt-link to="/account/register">
+                                Logout
+                            </nuxt-link>
+                        </v-list-item>
+                        </v-list>
+
+                        <!-- <v-card-actions>
+                        <v-spacer></v-spacer>
+
+                        <v-btn
+                            text
+                            @click="menu = false"
+                        >
+                            Cancel
+                        </v-btn>
+                        <v-btn
+                            color="primary"
+                            text
+                            @click="menu = false"
+                        >
+                            Save
+                        </v-btn>
+                        </v-card-actions> -->
+                    </v-card>
+                    </v-menu>
+                </div>
             </div>
-            <div class="ps-block__right">
+            <!-- <div class="ps-block__right">
                 <nuxt-link to="/account/login">
                     Login
                 </nuxt-link>
                 <nuxt-link to="/account/register">
                     Register
                 </nuxt-link>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -29,7 +82,15 @@ import MiniCart from '~/components/shared/headers/modules/MiniCart';
 import AccountLinks from '~/components/partials/account/modules/AccountLinks';
 export default {
     name: 'HeaderActions2',
-    components: { AccountLinks, MiniCart }
+    components: { AccountLinks, MiniCart },
+    data() {
+        return {
+            menu: false,
+            fav: true,
+            message: false,
+            hints: true
+        }
+    }
 };
 </script>
 
