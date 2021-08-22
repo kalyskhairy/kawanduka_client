@@ -4,9 +4,9 @@
             <h5>Daftarkan akunmu segera!</h5>
             <div class="form-group">
                 <v-text-field
-                    v-model="username"
-                    :error-messages="usernameErrors"
-                    @input="$v.username.$touch()"
+                    v-model="email"
+                    :error-messages="emailErrors"
+                    @input="$v.email.$touch()"
                     placeholder="Email"
                     class="ps-text-field"
                     outlined
@@ -15,9 +15,9 @@
             </div>
             <div class="form-group">
                 <v-text-field
-                    v-model="phone_number"
+                    v-model="phone"
                     :error-messages="phoneErrors"
-                    @input="$v.username.$touch()"
+                    @input="$v.phone.$touch()"
                     placeholder="No Handphone"
                     class="ps-text-field"
                     type="number"
@@ -93,16 +93,16 @@ import { validationMixin } from 'vuelidate';
 export default {
     name: 'Register',
     computed: {
-        usernameErrors() {
+        emailErrors() {
             const errors = [];
-            if (!this.$v.username.$dirty) return errors;
-            !this.$v.username.required && errors.push('This field is required');
+            if (!this.$v.email.$dirty) return errors;
+            !this.$v.email.required && errors.push('This field is required');
             return errors;
         },
         phoneErrors() {
             const errors = [];
-            if (!this.$v.phone_number.$dirty) return errors;
-            !this.$v.phone_number.required && errors.push('This field is required');
+            if (!this.$v.phone.$dirty) return errors;
+            !this.$v.phone.required && errors.push('This field is required');
             return errors;
         },
         passwordErrors() {
@@ -114,23 +114,32 @@ export default {
     },
     data() {
         return {
-            username: null,
+            email: null,
             password: null,
             confirm_password: null,
-            phone_number: null
+            phone: null
         };
     },
     validations: {
-        username: { required },
+        email: { required },
         password: { required },
-        phone_number: { required },
+        phone: { required },
         confirm_password: { required }
     },
     methods: {
-        handleSubmit() {
+        async handleSubmit() {
             this.$v.$touch();
             if (!this.$v.$invalid) {
-                this.$router.push('/account/login');
+                // this.$router.push('/account/login');
+                let params = {};
+                params.email = this.email;
+                params.phone = this.phone;
+                params.password = this.password
+                params.roleId = 2;
+                params.religionId = 1;
+                let result = await this.$publicApi.register(params);
+
+                console.log('ini result -> ', result);
             }
         }
     }

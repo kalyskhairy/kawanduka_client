@@ -37,13 +37,15 @@ export default {
         { src: '~/plugins/swiper-plugin.js', ssr: false },
         { src: '~/plugins/vue-notification.js', ssr: false },
         { src: '~/plugins/axios.js', ssr: false },
-        { src: '~/plugins/lazyLoad.js', ssr: false }
+        { src: '~/plugins/lazyLoad.js', ssr: false },
+        { src: '~/plugins/public-service.js' }
     ],
 
     buildModules: [
         '@nuxtjs/vuetify',
         '@nuxtjs/style-resources',
-        'cookie-universal-nuxt'
+        'cookie-universal-nuxt',
+        '@nuxtjs/dotenv'
     ],
 
     styleResources: {
@@ -67,9 +69,42 @@ export default {
         linkActiveClass: '',
         linkExactActiveClass: 'active'
     },
-
+    target: 'server',
     server: {
-        port: 4002,
-        host: 'localhost'
-    }
+        port: process.env.port || 4002,
+        host: '127.0.0.1'
+    },
+    auth: {
+        localStorage: false,
+        redirect: {
+          login: '/login',
+          logout: '/login',
+          callback: '/login',
+          home: '/'
+        },
+        cookie: {
+          prefix: 'auth.',
+          options: {
+            path: '/',
+            domain: process.env.DOMAIN_COOKIES,
+            secure: (process.env.APP_ENV == 'production')
+          }
+        },
+        strategies: {
+          local: {
+            token: {
+              property: 'access_token',
+              maxAge: 3000
+            },
+            user: {
+              property: '',
+            },
+            endpoints: {
+              login: { url: '/auth/login', method: 'post' },
+              logout: { url: '/auth/logout', method: 'post' },
+              user: { url: '/auth/me', method: 'get' }
+            },
+          }
+        },
+      },
 };
