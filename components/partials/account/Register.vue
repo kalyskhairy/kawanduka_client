@@ -131,15 +131,20 @@ export default {
             this.$v.$touch();
             if (!this.$v.$invalid) {
                 // this.$router.push('/account/login');
-                let params = {};
-                params.email = this.email;
-                params.phone = this.phone;
-                params.password = this.password
-                params.roleId = 2;
-                params.religionId = 1;
-                let result = await this.$publicApi.register(params);
-
-                console.log('ini result -> ', result);
+                try {
+                    let params = {};
+                    params.email = this.email;
+                    params.phone = this.phone;
+                    params.password = this.password
+                    params.roleId = 2;
+                    params.religionId = 1;
+                    let result = await this.$publicApi.register(params);
+    
+                    console.log('ini result -> ', result);
+                    
+                } catch (error) {
+                    console.log(error.response);
+                }
             }
         }
     }

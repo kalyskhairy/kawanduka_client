@@ -45,7 +45,7 @@ export default {
         '@nuxtjs/vuetify',
         '@nuxtjs/style-resources',
         'cookie-universal-nuxt',
-        '@nuxtjs/dotenv'
+        '@nuxtjs/dotenv',
     ],
 
     styleResources: {
@@ -64,7 +64,9 @@ export default {
         defaultLocale: 'en',
         langDir: 'lang/locales/'
     },
-
+    axios: {
+      baseUrl: process.env.BASE_URL
+    },
     router: {
         linkActiveClass: '',
         linkExactActiveClass: 'active'

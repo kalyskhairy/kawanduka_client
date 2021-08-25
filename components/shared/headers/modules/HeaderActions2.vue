@@ -65,14 +65,14 @@
                     </v-menu>
                 </div>
             </div>
-            <!-- <div class="ps-block__right">
+            <div class="ps-block__right" v-if="$store.state.auth.isLoggedIn">
                 <nuxt-link to="/account/login">
                     Login
                 </nuxt-link>
                 <nuxt-link to="/account/register">
                     Register
                 </nuxt-link>
-            </div> -->
+            </div>
         </div>
     </div>
 </template>
@@ -80,6 +80,8 @@
 <script>
 import MiniCart from '~/components/shared/headers/modules/MiniCart';
 import AccountLinks from '~/components/partials/account/modules/AccountLinks';
+import { mapMutations } from 'vuex';
+
 export default {
     name: 'HeaderActions2',
     components: { AccountLinks, MiniCart },
@@ -90,8 +92,12 @@ export default {
             message: false,
             hints: true
         }
-    }
+    },
+    methods: {
+    },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>
