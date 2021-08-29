@@ -2,17 +2,17 @@
     <header class="header--dashboard">
         <div class="header__left">
             <h3>{{ title }}</h3>
-            <p>{{ description }}</p>
+            <!-- <p>{{ description }}</p> -->
         </div>
-        <div class="header__center">
+        <!-- <div class="header__center">
             <form-header-search />
         </div>
         <div class="header__right">
-            <a class="header__site-link" target="_blank" href="http://vuestorefronts.com/">
+            <a class="header__site-link" target="_blank" href="http://localhost:3000/">
                 <span>View your store</span>
                 <i class="icon-exit-right"></i>
             </a>
-        </div>
+        </div> -->
     </header>
 </template>
 

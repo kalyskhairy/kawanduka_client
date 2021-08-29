@@ -48,3 +48,9 @@ export default {
 </script>
 
 <style lang="scss" scoped></style>
+
+<style>
+.main-seller {
+    margin: 25px;
+}
+</style>

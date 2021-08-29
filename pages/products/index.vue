@@ -1,6 +1,6 @@
 <template lang="html">
     <section class="ps-page">
-        <header-dashboard title="Products" description="Martfury Products listing" />
+        <header-dashboard title="Products" />
         <section class="ps-items-listing">
             <div class="ps-section__actions">
                 <nuxt-link to="/products/create-new" class="ps-btn success">
