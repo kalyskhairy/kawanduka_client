@@ -1,7 +1,9 @@
 export const state = () => ({
     appDrawer: false,
     currentDrawerContent: null,
-    currency: '$'
+    currency: '$',
+    isDrawer: false,
+    isSearch: false
 });
 
 export const mutations = {
@@ -15,6 +17,14 @@ export const mutations = {
 
     setCurrency(state, payload) {
         state.currency = payload;
+    },
+
+    toggleDrawer(state, payload) {
+        state.isDrawer = payload;
+    },
+
+    toggleSearch(state, payload) {
+        state.isSearch = payload;
     }
 };
 

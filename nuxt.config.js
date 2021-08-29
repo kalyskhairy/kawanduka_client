@@ -29,7 +29,9 @@ export default {
         '~/static/fonts/Linearicons/Font/demo-files/demo.css',
         '~/static/fonts/font-awesome/css/font-awesome.css',
         '~/static/css/bootstrap.min.css',
-        '~/assets/scss/style.scss'
+        '~/assets/scss/style.scss',
+        "~/assets/styles/env.scss",
+        "~/assets/styles/style.scss"
     ],
 
     plugins: [
@@ -38,7 +40,8 @@ export default {
         { src: '~/plugins/vue-notification.js', ssr: false },
         { src: '~/plugins/axios.js', ssr: false },
         { src: '~/plugins/lazyLoad.js', ssr: false },
-        { src: '~/plugins/public-service.js' }
+        { src: '~/plugins/public-service.js' },
+        { src: "~/plugins/apexcharts.js", ssr: false }
     ],
 
     buildModules: [

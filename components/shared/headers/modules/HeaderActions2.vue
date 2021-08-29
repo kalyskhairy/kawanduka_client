@@ -35,7 +35,7 @@
                             <!-- <nuxt-link to="/seller/penjualan">
                                 Akun Seller
                             </nuxt-link> -->
-                            <a href="http://localhost:3000/seller/penjualan" target="_blank" rel="noopener">Akun Seller</a>
+                            <a href="http://localhost:3000/seller" target="_blank" rel="noopener">Akun Seller</a>
                         </v-list-item>
 
                         <v-list-item>

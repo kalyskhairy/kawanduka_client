@@ -1,35 +1,32 @@
 <template lang="html">
     <div class="ps-page--404">
-        <div class="container">
-            <div class="ps-section__content">
+        <div
+            class="ps-page__left bg--cover"
+            :style="{
+                backgroundImage: `url(/img/404.jpg)`
+            }"
+        ></div>
+        <div class="ps-page__right">
+            <div class="ps-page__content">
                 <figure v-if="error.statusCode === 404">
-                    <img src="~/static/img/404.jpg" alt="" />
-                    <h3>Ohh! Page not found</h3>
+                    <h1>404</h1>
+                    <h3>Opps! Page not found</h3>
                     <p>
-                        It seems we can't find what you're looking for.
-                        <br />
-                        Go back to
-                        <a class="ps-highlight" href="/">Homepage</a>
+                        The pageyou are looking for might have been removed, had it's name changes,
+                        or is temporarily unavailable
                     </p>
-                </figure>
-                <figure v-else>
-                    <p>
-                        It seems we can't find what you're looking for.
-                        <br />
-                        Go back to
-                        <a class="ps-highlight" href="/">Homepage</a>
-                    </p>
+                    <nuxt-link to="/" class="ps-btn ps-btn--black ps-btn--sm">
+                        <i class="feather icon icon-arrow-left mr-2"></i>
+                        <span>Go to homepage</span>
+                    </nuxt-link>
                 </figure>
             </div>
         </div>
     </div>
 </template>
 <script>
-import HeaderDefault from '~/components/shared/headers/HeaderDefault';
-import FooterDefault from '~/components/shared/footers/FooterDefault';
 export default {
-    components: { FooterDefault, HeaderDefault },
-    layout: 'empty',
+    layout: 'layout-error',
     props: {
         error: {
             type: Object,
@@ -37,8 +34,7 @@ export default {
         }
     },
     head() {
-        const title =
-            this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
+        const title = this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
         return {
             title
         };
@@ -52,3 +48,59 @@ export default {
     }
 };
 </script>
+<style lang="scss" scoped>
+.ps-page--404 {
+    display: flex;
+    flex-flow: column nowrap;
+
+    > * {
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+
+    .ps-page__left {
+        min-height: 300px;
+    }
+
+    .ps-page__right {
+        padding: 50px 30px;
+        min-height: calc(100vh - 300px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        h1 {
+            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 60px;
+            color: #ccc;
+        }
+
+        h3 {
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        > * {
+            flex-basis: 100%;
+            max-width: 50%;
+            height: 100vh;
+        }
+        .ps-page__right {
+            padding: 100px 80px;
+            h1 {
+                font-size: 100px;
+            }
+        }
+    }
+}
+</style>
