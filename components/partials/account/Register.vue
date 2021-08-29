@@ -117,7 +117,9 @@ export default {
             email: null,
             password: null,
             confirm_password: null,
-            phone: null
+            phone: null,
+            roleId: 2,
+            religionId: 1
         };
     },
     validations: {
@@ -136,8 +138,8 @@ export default {
                     params.email = this.email;
                     params.phone = this.phone;
                     params.password = this.password
-                    params.roleId = 2;
-                    params.religionId = 1;
+                    params.roleId = this.roleId;
+                    params.religionId = this.religionId;
                     let result = await this.$publicApi.register(params);
     
                     console.log('ini result -> ', result);
