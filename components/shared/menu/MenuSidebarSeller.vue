@@ -1,31 +1,23 @@
 <template lang="html">
-<div>
-    <!-- <ul class="menu">
-        <li v-for="item in menuItems" :key="item.text">
-            <nuxt-link :to="item.url" class="menu__text">
-                <i :class="item.icon"> </i>
-                <span>{{ item.text }}</span>
-            </nuxt-link>
-        </li>
-    </ul> -->
     <v-list
     dense
     nav
+    color="#F1F2F6"
+    height="100%"
     >
 
-        <v-list-item
-        link
-        color="indigo"
-        >
-            <v-list-item-icon>
-            <v-icon>mdi-format-list-bulleted</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-            <nuxt-link to="/seller/penjualan">
-                <v-list-item-title>Penjualan</v-list-item-title>
-            </nuxt-link>
-            </v-list-item-content>
-        </v-list-item>
+        <nuxt-link to="/seller/penjualan">
+            <v-list-item
+            link
+            >
+                <v-list-item-icon>
+                    <v-icon>mdi-format-list-bulleted</v-icon>
+                </v-list-item-icon>
+                <v-list-item-content>
+                        <v-list-item-title>Penjualan</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+        </nuxt-link>
 
         <v-list-group
             v-for="item in items"
@@ -50,7 +42,6 @@
             </v-list-item>
         </v-list-group>
     </v-list>
-</div>
 </template>
 
 <script>

@@ -223,6 +223,7 @@
                                 :items="items"
                                 placeholder="Pilih Kategori"
                                 outlined
+                                v-model="kategori"
                                 ></v-select>
                             </div>
 
@@ -236,6 +237,7 @@
                                 :items="items"
                                 placeholder="Pilih Agama"
                                 outlined
+                                v-model="agama"
                                 ></v-select>
                             </div>
 
@@ -348,6 +350,8 @@ export default {
     components: { FormSearchSimple, Pagination, HeaderDashboard, TableProductItems },
     data() {
         return {
+            agama: '',
+            kategori: '',
             items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
             radio: '',
             radioGroup: [

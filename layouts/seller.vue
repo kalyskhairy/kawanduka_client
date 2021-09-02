@@ -19,7 +19,9 @@
             </div>
         </div>
         <div class="ps-main__wrapper">
-            <nuxt />
+            <v-app>\
+                <nuxt />
+            </v-app>
         </div>
     </main>
 </template>
