@@ -9,6 +9,5 @@ export default (ctx, inject) => {
     }
   })
   const repoAxios = createRepository(api)
-
   inject('publicApi', repoAxios);
 }

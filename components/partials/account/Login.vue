@@ -75,6 +75,8 @@ import { validationMixin } from 'vuelidate';
 
 export default {
     name: 'Login',
+    middleware: ["auth"],
+    auth: "guest",
     computed: {
         usernameErrors() {
             const errors = [];
@@ -100,11 +102,44 @@ export default {
         password: { required }
     },
     methods: {
-        handleSubmit() {
+        async handleSubmit() {
             this.$v.$touch();
             if (!this.$v.$invalid) {
-                this.$store.dispatch('auth/setAuthStatus', true);
-                this.$router.push('/');
+                // this.$store.dispatch('authen/setAuthStatus', true);
+                // this.$router.push('/');
+                try {
+                    let params = {};
+                    params.Username = this.username;
+                    params.Password = this.password;
+                    let header = Buffer.from(`${this.username}:${this.password}`, 'utf8').toString('base64');
+
+                    let result = await this.$publicApi.login(params, header);
+                    
+                    console.log('result -> ' , result);
+                    if (result) {
+                        this.$swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        this.$auth.strategy.token.set(result.accessToken);
+                        this.$store.dispatch('authen/setAuthStatus', result.accessToken);
+                        this.$router.push('/');
+                    }
+                    
+                } catch (error) {
+                    console.log('ini error -> ',error.response);
+                }
+            }
+        },
+        async setToken(token){
+            try {
+                let result = await this.$auth.setUserToken(token);
+                console.log('result setToken -> ', result);
+                debugger
+            } catch (error) {
+                console.log('error setToken => ', error.response);
             }
         }
     }

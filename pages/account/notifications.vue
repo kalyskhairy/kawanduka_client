@@ -31,7 +31,21 @@ export default {
                 }
             ]
         };
-    }
+    },
+    // async asyncData({ app, redirect, error, params }) {
+    //     try {
+    //         let token = this.$auth.strategy.token.get();
+    //         var notifBuyer  = await app.$publicApi.notificationBuyer(token);
+    //         var notifSeller = await app.$publicApi.notificationSeller(token);
+    //         return {
+    //             notifBuyer,
+    //             notifSeller,
+    //             token
+    //         };
+    //     } catch (err) {
+    //         error({ statusCode: 503, message: "Failed fetch data" });
+    //     }
+    // },
 };
 </script>
 

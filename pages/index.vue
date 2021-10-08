@@ -83,6 +83,11 @@ export default {
         Categories,
         ProductService
     },
+    data() {
+        return {
+            banner: null
+        }
+    },
     computed: {
         ...mapState({
             collections: state => state.collection.collections,
@@ -107,6 +112,9 @@ export default {
             'collection/getCategoriesBySlugs',
             categoriesSlug
         );
+
+        this.banner = await this.$publicApi.getBanner();
+        
     }
 };
 </script>

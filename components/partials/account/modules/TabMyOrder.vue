@@ -29,7 +29,9 @@
                     </div>
                 </figure>
             </div>
-            <!-- <v-divider class="border"/> -->
+            <v-divider 
+            vertical
+            />
             <div class="col-md-6 col-12">
                 <figure class="ps-block--address">
                     <div class="ps-block__content">

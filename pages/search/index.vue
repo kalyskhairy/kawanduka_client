@@ -11,10 +11,26 @@
                     :title="'Lokasi'"
                     :data="lokasi"
                     />
-                    <bar-shop
+                    <!-- <bar-shop
                     :title="'Agama'"
                     :data="agama"
-                    />
+                    /> -->
+                    <div id="shop-widgets">
+                        <aside class="widget widget_shop">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 class="widget-title">
+                                        Agama
+                                    </h4>
+                                    <div class="row">
+                                        <div class="col-12" v-for="(value, index) in agama" :key="index">
+                                            {{ value.religionName }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
                 </div>
 
                 <div class="ps-layout__right">
@@ -44,7 +60,6 @@ export default {
         BreadCrumb,
         BarShop
     },
-
     computed: {
         ...mapState({
             searchResults: state => state.product.searchResults,
@@ -85,26 +100,12 @@ export default {
                     nama: 'Banten'
                 },
             ],
-            agama: [
-                {
-                    nama: 'Islam'
-                },
-                {
-                    nama: 'Kristen'
-                },
-                {
-                    nama: 'Katolik'
-                },
-                {
-                    nama: 'Hindu'
-                },
-                {
-                    nama: 'Budha'
-                },
-            ]
+            agama: []
         };
     },
-
+    async mounted () {
+        this.agama = await this.$publicApi.religion()
+    },
     async created() {
         await this.$store.dispatch('product/getProductByKeyword', {
             title_contains: this.keyword

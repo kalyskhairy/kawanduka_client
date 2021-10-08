@@ -1,7 +1,7 @@
 export default {
     head: {
-        titleTemplate: 'Martfury - Multi-purpose Ecomerce template with vuejs',
-        title: 'Martfury - Multi-purpose Ecomerce template with vuejs',
+        titleTemplate: 'Kawanduka',
+        title: 'Kawanduka',
         meta: [
             { charset: 'utf-8' },
             {
@@ -12,7 +12,7 @@ export default {
                 hid: 'description',
                 name: 'description',
                 content:
-                    'Martfury - Multipurpose Marketplace Vuejs Ecommerce Template'
+                    'Kawanduka description'
             }
         ],
         link: [
@@ -41,22 +41,23 @@ export default {
         { src: '~/plugins/axios.js', ssr: false },
         { src: '~/plugins/lazyLoad.js', ssr: false },
         { src: '~/plugins/public-service.js' },
-        { src: "~/plugins/apexcharts.js", ssr: false }
+        { src: "~/plugins/apexcharts.js", ssr: false },
+        { src: '~/plugins/vue-sweetalert2.js', ssr: false},
+        { src: '~/plugins/helper.js', ssr: false},
     ],
 
     buildModules: [
         '@nuxtjs/vuetify',
         '@nuxtjs/style-resources',
-        'cookie-universal-nuxt',
         '@nuxtjs/dotenv',
+        ['@nuxtjs/router', { keepDefaultRouter: true }]
     ],
 
     styleResources: {
         scss: './assets/scss/env.scss'
     },
 
-    modules: ['@nuxtjs/axios', 'nuxt-i18n'],
-
+    modules: ['@nuxtjs/axios', 'nuxt-i18n', '@nuxtjs/auth-next','cookie-universal-nuxt'],
     i18n: {
         locales: [
             { code: 'en', file: 'en.json' },
@@ -98,7 +99,7 @@ export default {
         strategies: {
           local: {
             token: {
-              property: 'access_token',
+              property: 'accessToken',
               maxAge: 3000
             },
             user: {

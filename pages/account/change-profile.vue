@@ -13,7 +13,7 @@
                                     <img src="/img/users/3.jpg" />
                                     <figure>
                                         <figcaption>Hello</figcaption>
-                                        <p>username@gmail.com</p>
+                                        <p>{{ profile.email }}</p>
                                     </figure>
                                 </div>
                                 <div class="ps-widget__content">
@@ -44,7 +44,7 @@
                                                         </div>
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                                             <v-text-field
-                                                            v-model="name"
+                                                            v-model="selectedValue.name"
                                                             :counter="18"
                                                             label="Name"
                                                             outlined
@@ -59,6 +59,7 @@
                                                             :items="gender"
                                                             label="Jenis Kelamin"
                                                             outlined
+                                                            v-model="selectedValue.gender"
                                                             ></v-select>
                                                         </div>
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -66,9 +67,13 @@
                                                         </div>
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                                             <v-select
-                                                            :items="relegion"
+                                                            :items="religions"
+                                                            placeholder="Pilih Agama"
+                                                            item-text="religionName"
+                                                            item-value="id"
                                                             label="Agama"
                                                             outlined
+                                                            v-model="selectedValue.religionId"
                                                             ></v-select>
                                                         </div>
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
@@ -76,7 +81,7 @@
                                                         </div>
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                                             <v-text-field
-                                                            v-model="email"
+                                                            v-model="selectedValue.email"
                                                             :counter="18"
                                                             label="Email"
                                                             outlined
@@ -88,7 +93,7 @@
                                                         </div>
                                                         <div class="col-lg-12 col-md-12 col-sm-12">
                                                             <v-text-field
-                                                            v-model="phone"
+                                                            v-model="selectedValue.phone"
                                                             :counter="18"
                                                             label="No Telepon"
                                                             outlined
@@ -115,6 +120,7 @@
                                                 elevation="2"
                                                 class="btn-modal"
                                                 style="min-width:30%;"
+                                                @click="saveProfile"
                                                 >Simpan</v-btn>
                                                 </div>
                                                 <!-- <div class="col-lg-12 col-md-12 text-right">
@@ -139,7 +145,7 @@ import MyOrder from '~/components/partials/account/MyOrder';
 import AccountLinks from '~/components/partials/account/modules/AccountLinks';
 
 export default {
-    middleware: 'authentication',
+    middleware: ['authentication'],
     transition: 'zoom',
     components: {
         HeaderMobile,
@@ -163,17 +169,46 @@ export default {
                 }
             ],
             gender: [
-                'Laki - laki',
+                'Pria',
                 'Perempuan'
             ],
-            relegion: [
-                'Islam',
-                'Kristen',
-                'Budha',
-                'Katolik'
-            ]
+            religions: [],
+            profile: [],
         };
-    }
+    },
+    methods: {
+        async getProfileData() {
+            let token = this.$auth.strategy.token.get();
+            this.profile = await this.$publicApi.getProfile(token);
+        },
+        async getReligion(){
+            this.religions = await this.$publicApi.religion();
+        },
+        async saveProfile(){
+            try {
+                let token = this.$auth.strategy.token.get();
+                let response = await this.$publicApi.editProfile(this.selectedValue, token)
+                console.log('response -> ', response);
+                
+            } catch (error) {
+                console.log('error save profile -> ', error.response);
+            }
+        }
+    },
+    mounted () {
+        this.getProfileData();
+        this.getReligion()
+    },
+    computed: {
+        selectedValue: {
+            get(){
+                return this.profile
+            },
+            set(newvalue){
+                return this.$emit('change', newvalue);
+            }
+        }
+    },
 };
 </script>
 

@@ -69,8 +69,8 @@
                                 <v-range-slider
                                     v-model="priceRange"
                                     color="warning"
-                                    min="0"
-                                    max="1500"
+                                    min="10000"
+                                    max="999999"
                                     track-color="#dddddd"
                                     @end="handleFilterByPriceRagne"
                                 />
@@ -83,8 +83,8 @@
                             </div>
                             <div class="col-12">
                                 <p>
-                                    Price: ${{ priceRange[0].toFixed(2) }} - ${{
-                                        priceRange[1].toFixed(2)
+                                    Price: {{ $helper.convertCurrency(priceRange[0]) }} - {{
+                                       $helper.convertCurrency(priceRange[1])
                                     }}
                                 </p>
                             </div>

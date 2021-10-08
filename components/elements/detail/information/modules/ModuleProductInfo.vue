@@ -16,11 +16,14 @@
             </div>
         </div>
         <h4 v-if="product.is_sale === true" class="ps-product__price sale">
-            <del class="mr-2"> $ {{ product.sale_price.toFixed(2) }}</del>
-            ${{ product.price.toFixed(2) }}
+            <!-- <del class="mr-2"> {{ $helper.convertCurrency(product.sale_price) }}</del> -->
+            <del class="mr-2"> {{ $helper.convertCurrency(90000) }}</del>
+            <!-- {{ $helper.convertCurrency(product.sale_price) }} -->
+            {{ $helper.convertCurrency(90000) }}
         </h4>
         <h4 v-else class="ps-product__price">
-            ${{ product.price.toFixed(2) }}
+            <!-- {{ $helper.convertCurrency(product.sale_price) }} -->
+            {{ $helper.convertCurrency(90000) }}
         </h4>
     </div>
 </template>

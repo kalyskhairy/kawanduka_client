@@ -63,11 +63,17 @@ export default {
         username: { required },
     },
     methods: {
-        handleSubmit() {
+        async handleSubmit() {
             this.$v.$touch();
             if (!this.$v.$invalid) {
-                this.$store.dispatch('auth/setAuthStatus', true);
-                this.$router.push('/account/otp-verification');
+                console.log('masuk sini');
+                // this.$store.dispatch('auth/setAuthStatus', true);
+                // this.$router.push('/account/otp-verification');
+                let params = {}
+                params.email = this.username
+                let response = await this.$publicApi.forgetPassword(params)
+
+                console.log('response -> ', response);
             }
         }
     }

@@ -3,7 +3,7 @@
         class="header header--standard header--market-place-2"
         id="headerSticky"
     >
-        <div class="header__top">
+        <!-- <div class="header__top">
             <div class="container">
                 <div class="header__left">
                     <p>Welcome to Martfury Online Shopping Store !</p>
@@ -29,11 +29,11 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="header__content">
             <div class="container">
                 <div class="header__content-left">
-                    <nuxt-link to="/home/market-place-2" class="ps-logo">
+                    <nuxt-link to="/" class="ps-logo">
                         <img src="~/static/img/kawanduka_logo_2.png" alt="martfury" />
                     </nuxt-link>
                     <div class="menu--product-categories">
@@ -48,47 +48,12 @@
                 </div>
                 <div class="header__content-center">
                     <search-header />
-                    <!-- <p>
-                        <nuxt-link to="/shop">
-                            iphone x
-                        </nuxt-link>
-                        <nuxt-link to="/shop">
-                            virtual
-                        </nuxt-link>
-                        <nuxt-link to="/shop">
-                            apple
-                        </nuxt-link>
-                        <nuxt-link to="/shop">
-                            wireless
-                        </nuxt-link>
-                        <nuxt-link to="/shop">
-                            simple chair
-                        </nuxt-link>
-                        <nuxt-link to="/shop">
-                            classic watch
-                        </nuxt-link>
-                        <nuxt-link to="/shop">
-                            macbook
-                        </nuxt-link>
-                    </p> -->
                 </div>
                 <div class="header__content-right">
                     <header-actions2 />
                 </div>
             </div>
         </div>
-        <!-- <nav class="navigation">
-            <div class="container">
-                <ul class="menu menu--market-2">
-                    <li v-for="menuItem in menuMarket2" :key="menuItem.text">
-                        <nuxt-link :to="menuItem.url">
-                            <i class="{menuItem.icon}"></i>
-                            {{ menuItem.text }}
-                        </nuxt-link>
-                    </li>
-                </ul>
-            </div>
-        </nav> -->
     </header>
 </template>
 

@@ -73,7 +73,7 @@ export default {
     },
     methods: {
         handleLogout() {
-            this.$store.dispatch('auth/setAuthStatus', false);
+            this.$store.dispatch('authen/setAuthStatus', false);
         }
     }
 };

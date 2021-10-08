@@ -108,9 +108,18 @@ export default {
                     description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor',
                     date: 'April 30 2021'
                 },
-            ]
+            ],
+            notifications: {
+                buyer: [],
+                seller: []
+            }
         };
-    }
+    },
+    async mounted () {
+        let token = this.$auth.strategy.token.get();
+        this.notifications.buyer = await this.$publicApi.notificationBuyer(token);
+        this.notifications.seller = await this.$publicApi.notificationSeller(token);
+    },
 };
 </script>
 

@@ -1,40 +1,65 @@
 <template lang="html">
-    <div class="ps-product__shopping">
-        <figure>
-            <figcaption>Quantity</figcaption>
-            <div class="form-group--number">
-                <button class="up" @click.prevent="handleIncreaseQuantity">
-                    <i class="fa fa-plus"></i>
-                </button>
-                <button class="down" @click.prevent="handleDescreaseQuantity">
-                    <i class="fa fa-minus"></i>
-                </button>
-                <input
-                    v-model="quantity"
-                    class="form-control"
-                    type="text"
-                    disabled
-                />
+    <!-- <div class="ps-product__shopping"> -->
+    <div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <label>Quantity</label>
+                <!-- <figure>
+                    <figcaption>Quantity</figcaption>
+                    <div class="form-group--number">
+                        <button class="up" @click.prevent="handleIncreaseQuantity">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                        <button class="down" @click.prevent="handleDescreaseQuantity">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <input
+                            v-model="quantity"
+                            class="form-control"
+                            type="text"
+                            disabled
+                        />
+                    </div>
+                </figure> -->
             </div>
-        </figure>
-        <a
-            class="ps-btn ps-btn--blue"
-            href="#"
-            @click.prevent="handleAddToCart"
-        >
-            Masukan Keranjang
-        </a>
-        <a class="ps-btn" href="#" @click.prevent="">
-            Beli Sekarang
-        </a>
-        <div class="ps-product__actions">
+            <div class="col-lg-8 col-md-8 col-sm-6">
+                <div class="form-group--number">
+                    <button class="up" @click.prevent="handleIncreaseQuantity">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    <button class="down" @click.prevent="handleDescreaseQuantity">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <input
+                        v-model="quantity"
+                        class="form-control"
+                        type="text"
+                        disabled
+                    />
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <a
+                class="ps-btn ps-btn--blue"
+                href="#"
+                @click.prevent="handleAddToCart"
+            >
+                Masukan Keranjang
+            </a>
+            <a class="ps-btn ps-btn--green">
+                Beli Sekarang
+            </a>
+        </div>
+        <!-- <div class="ps-product__actions">
             <a href="#">
                 <i class="icon-heart"></i>
             </a>
             <a href="#">
                 <i class="icon-chart-bars"></i>
             </a>
-        </div>
+        </div> -->
     </div>
 </template>
 

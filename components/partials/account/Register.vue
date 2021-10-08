@@ -26,6 +26,16 @@
                 />
             </div>
             <div class="form-group">
+                <v-select
+                v-model="religionId"
+                :items="religions"
+                placeholder="Pilih Agama"
+                item-text="religionName"
+                item-value="id"
+                outlined
+                ></v-select>
+            </div>
+            <div class="form-group">
                 <v-text-field
                     v-model="password"
                     :error-messages="passwordErrors"
@@ -119,7 +129,8 @@ export default {
             confirm_password: null,
             phone: null,
             roleId: 2,
-            religionId: 1
+            religionId: null,
+            religions: []
         };
     },
     validations: {
@@ -135,21 +146,43 @@ export default {
                 // this.$router.push('/account/login');
                 try {
                     let params = {};
+                    params.name = 'Kalys lasoma'
                     params.email = this.email;
                     params.phone = this.phone;
                     params.password = this.password
                     params.roleId = this.roleId;
                     params.religionId = this.religionId;
+                    console.log('param -> ', params);
                     let result = await this.$publicApi.register(params);
     
                     console.log('ini result -> ', result);
-                    
+                    if (result.code == 200) {
+                        this.$swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: result.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        this.$router.push('/account/login');
+                    }
                 } catch (error) {
                     console.log(error.response);
+                    this.$swal.fire(
+                        'Maaf',
+                        error.response.data.message,
+                        'error'
+                    )
                 }
             }
+        },
+        async getReligion(){
+            this.religions = await this.$publicApi.religion();
         }
-    }
+    },
+    mounted () {
+        this.getReligion();
+    },
 };
 </script>
 

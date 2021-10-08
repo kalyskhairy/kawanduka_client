@@ -10,7 +10,12 @@
         <mini-cart />
         <div class="ps-block--user-header">
             <div class="ps-block__left">
-                <div class="text-center">
+                <!-- <i class="icon-user" v-if="!isLoggedIn"><a @click.prevent="handleLogin"></a></i> -->
+                <nuxt-link to="/account/login">
+                    <i class="icon-user" v-if="!isLoggedIn">
+                    </i>
+                </nuxt-link>
+                <div class="text-center" v-if="isLoggedIn">
                     <v-menu
                     v-model="menu"
                     :close-on-content-click="false"
@@ -23,50 +28,30 @@
                         ></i>
                     </template>
 
-                    <v-card>
-                        <v-list>
-                        <v-list-item>
-                            <nuxt-link to="/account/change-profile">
-                                Ubah Profil
-                            </nuxt-link>
-                        </v-list-item>
+                        <v-card>
+                            <v-list>
+                            <v-list-item>
+                                <nuxt-link to="/account/change-profile">
+                                    Ubah Profil
+                                </nuxt-link>
+                            </v-list-item>
 
-                        <v-list-item>
-                            <!-- <nuxt-link to="/seller/penjualan">
-                                Akun Seller
-                            </nuxt-link> -->
-                            <a href="http://localhost:3000/seller" target="_blank" rel="noopener">Akun Seller</a>
-                        </v-list-item>
+                            <v-list-item>
+                                <a href="http://localhost:3000/seller" target="_blank" rel="noopener">Akun Seller</a>
+                            </v-list-item>
 
-                        <v-list-item>
-                            <nuxt-link to="/account/register">
-                                Logout
-                            </nuxt-link>
-                        </v-list-item>
-                        </v-list>
+                            <v-list-item>
+                                <a @click.prevent="handleLogout">
+                                    Logout
+                                </a>
+                            </v-list-item>
+                            </v-list>
 
-                        <!-- <v-card-actions>
-                        <v-spacer></v-spacer>
-
-                        <v-btn
-                            text
-                            @click="menu = false"
-                        >
-                            Cancel
-                        </v-btn>
-                        <v-btn
-                            color="primary"
-                            text
-                            @click="menu = false"
-                        >
-                            Save
-                        </v-btn>
-                        </v-card-actions> -->
-                    </v-card>
+                        </v-card>
                     </v-menu>
                 </div>
             </div>
-            <div class="ps-block__right" v-if="$store.state.auth.isLoggedIn">
+            <div class="ps-block__right" v-if="!$store.state.authen.isLoggedIn">
                 <nuxt-link to="/account/login">
                     Login
                 </nuxt-link>
@@ -81,7 +66,7 @@
 <script>
 import MiniCart from '~/components/shared/headers/modules/MiniCart';
 import AccountLinks from '~/components/partials/account/modules/AccountLinks';
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 
 export default {
     name: 'HeaderActions2',
@@ -95,6 +80,15 @@ export default {
         }
     },
     methods: {
+        handleLogout() {
+            this.$store.dispatch('authen/setAuthStatus', false);
+        }
+    },
+    computed: {
+        // isLogin() {
+        //     return this.$store.state.isLogin 
+        // }
+        ...mapState('authen', ['isLoggedIn'])
     },
 };
 </script>

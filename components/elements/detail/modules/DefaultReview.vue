@@ -2,7 +2,7 @@
 <div class="ps-product__content">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12">
+            <div class="col-lg-12 col-md-12 col-sm-12">
                 <h3>Ulasan</h3>
             </div>
         </div>
@@ -18,6 +18,7 @@
         </div>
         <div class="row mt-10">
             <div class="col-lg-12 col-md-12">
+                <!-- Ulasan detail produk -->
                 <div v-for="(data, index) in comments" :key="index">
                     <aside class="ps-widget--account-dashboard">
                         <div class="ps-widget__header">
@@ -36,6 +37,7 @@
                         </div>
                     </aside>
                 </div>
+                <!-- End ulasan detail produk -->
             </div>
         </div>
     </div>
