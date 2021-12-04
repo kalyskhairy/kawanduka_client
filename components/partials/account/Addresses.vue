@@ -100,10 +100,14 @@
                                                                                 ></v-text-field>
                                                                             </v-col>
                                                                             <v-col cols="12">
-                                                                                <v-text-field
-                                                                                label="Kota atau kecamatan"
-                                                                                required
-                                                                                ></v-text-field>
+                                                                                <v-autocomplete
+                                                                                    v-model="districtName"
+                                                                                    :items="region"
+                                                                                    chips
+                                                                                    label="Kecamatan"
+                                                                                    clearable
+                                                                                    v-on:change="getRegion"
+                                                                                ></v-autocomplete>
                                                                             </v-col>
                                                                             <v-col cols="12">
                                                                                 <v-text-field
@@ -163,6 +167,7 @@ import AccountLinks from './modules/AccountLinks';
 export default {
     name: 'Addresses',
     components: { AccountLinks },
+
     data() {
         return {
             dialog: false,
@@ -212,9 +217,25 @@ export default {
                     alamat1: 'Jakarta, 20123, Indonesia',
                     phone: '08193093939'
                 },
+            ],
+            descriptionLimit: 60,
+            entries: [],
+            isLoading: false,
+            model: null,
+            search: null,
+            districtName: null,
+            region: [
+                'testing'
             ]
         };
-    }
+    },
+    methods: {
+        getRegion() {
+            console.log(
+                'ddistrictName ', this.districtName
+            );
+        }
+    },
 };
 </script>
 

@@ -18,7 +18,7 @@
         </ul> -->
         <div class="ps-list--dot">
             <p>
-                Ad velit voluptate laboris excepteur ex. Ea tempor veniam cillum ea cillum anim fugiat pariatur qui mollit
+                {{ product.description }}
             </p>
         </div>
     </div>

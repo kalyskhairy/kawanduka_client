@@ -52,10 +52,11 @@ export const mutations = {
 export const actions = {
     async getProducts({ commit }, payload) {
         const reponse = await Repository.get(
-            `${baseUrl}/products?${serializeQuery(payload)}`
+            `${baseUrl}/v1/products?${serializeQuery(payload)}`
         )
             .then(response => {
                 commit('setProducts', response.data);
+                commit('setSearchResults', response.data.data);
                 return response.data;
             })
             .catch(error => ({ error: JSON.stringify(error) }));
@@ -73,7 +74,7 @@ export const actions = {
     },
 
     async getProductsById({ commit }, payload) {
-        const reponse = await Repository.get(`${baseUrl}/products/${payload}`)
+        const reponse = await Repository.get(`${baseUrl}/v1/product?id=${payload}`)
             .then(response => {
                 commit('setProduct', response.data);
                 return response.data;

@@ -8,24 +8,22 @@
                 <h3>Kategori</h3>
             </div>
             <div class="ps-section__content">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="row">
-                            <div class="col" v-for="(data, index) in dataKategori" :key="index">
-                                {{ data.name }}
+                <carousel-arrows type="simple" />
+                <div class="ps-carousel" v-swiper:mySwiper="carouselSetting">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="data in categories">
+                            <div class="text-center">
+                                <nuxt-link :to="`/kategori/${data.id}`">
+                                    <img class="logo-regulator" :src="data.image" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-text">{{ data.name }}</p>
+                                    </div>
+                                </nuxt-link>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- <carousel-arrows type="simple" />
-                <div class="ps-carousel" v-swiper:mySwiper="carouselSetting">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="product in products">
-                            <product-default :product="product" />
-                        </div>
-                    </div> -->
                     <!--Carousel controls-->
-                <!-- </div> -->
+                </div>
             </div>
         </div>
     </section>
@@ -42,9 +40,8 @@ export default {
     name: 'Categories',
     components: { CarouselArrows, ProductDefault },
     props: {
-        collectionSlug: {
-            type: String,
-            default: ''
+        data: {
+            type: [Array, Object],
         }
     },
     computed: {
@@ -64,34 +61,12 @@ export default {
                     prevEl: '#market2-technology .swiper-prev'
                 }
             },
-            dataKategori: [
-                {
-                    name: 'Transportasi'
-                },
-                {
-                    name: 'Bunga'
-                },
-                {
-                    name: 'Peralatan Ibadah'
-                },
-                {
-                    name: 'Jasa Printing'
-                },
-                {
-                    name: 'Perizinan'
-                },
-                {
-                    name: 'Peti Mayat'
-                },
-                {
-                    name: 'Kain Kafan'
-                },
-                {
-                    name: 'Nisan'
-                },
-            ]
         };
     }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.logo-regulator {
+    max-height: 65px;
+}
+</style>

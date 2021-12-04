@@ -3,10 +3,10 @@
         v-if="product.is_sale === true"
         class="ps-product__price sale"
     >
-        ${{ product.price }}
-        <del class="ml-2"> ${{ product.sale_price }}</del>
+        {{ $helper.convertCurrency(product.price) }}
+        <del class="ml-2"> {{ $helper.convertCurrency(product.price) }}</del>
     </p>
-    <p v-else class="ps-product__price">${{ product.price }}</p>
+    <p v-else class="ps-product__price">{{ $helper.convertCurrency(product.price) }}</p>
 </template>
 
 <script>

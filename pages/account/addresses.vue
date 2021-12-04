@@ -16,6 +16,18 @@ export default {
     },
     transition: 'zoom',
     middleware: 'authentication',
+    async asyncData({ app, redirect, error }) {
+        try {
+        var buyerAddres = await app.$buyerApi.getBuyerAddress();
+
+        return {
+            buyerAddres
+        };
+        } catch (err) {
+            console.log('error nih -> ', err);
+        error({ statusCode: 503, message: "Failed fetch data" });
+        }
+    },
     data: () => {
         return {
             breadCrumb: [

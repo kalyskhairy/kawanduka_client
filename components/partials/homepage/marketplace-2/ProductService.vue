@@ -18,11 +18,11 @@
                 <carousel-arrows type="simple" />
                 <div class="ps-carousel" v-swiper:mySwiper="carouselSetting">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide" v-for="product in products">
+                        <div class="swiper-slide" v-for="(product, index) in products" :key="index">
                             <product-default :product="product" />
                         </div>
                     </div>
-                    <!--Carousel controls-->
+                    <!-- Carousel controls -->
                 </div>
             </div>
         </div>
@@ -40,22 +40,20 @@ export default {
     name: 'ProductService',
     components: { CarouselArrows, ProductDefault },
     props: {
-        collectionSlug: {
-            type: String,
-            default: ''
-        },
+        // collectionSlug: [Array, Object],
         title: {
             type: String,
             default: 'Title'
-        }
+        },
+        products: [Array]
     },
     computed: {
-        ...mapState({
-            categories: state => state.collection.categories
-        }),
-        products() {
-            return getColletionBySlug(this.categories, this.collectionSlug);
-        }
+        // ...mapState({
+        //     products: state => state.collection.products
+        // }),
+        // products() {
+        //     return getColletionBySlug(this.products, this.collectionSlug);
+        // }
     },
     data() {
         return {

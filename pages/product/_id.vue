@@ -71,10 +71,10 @@ export default {
             }.bind(this),
             2000
         );
-        const collections = await this.$store.dispatch(
-            'collection/getCollectionsBySlugs',
-            queries
-        );
+        // const collections = await this.$store.dispatch(
+        //     'collection/getCollectionsBySlugs',
+        //     queries
+        // );
         const product = await this.$store.dispatch(
             'product/getProductsById',
             this.productId

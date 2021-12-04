@@ -3,33 +3,6 @@
         class="header header--standard header--market-place-2"
         id="headerSticky"
     >
-        <!-- <div class="header__top">
-            <div class="container">
-                <div class="header__left">
-                    <p>Welcome to Martfury Online Shopping Store !</p>
-                </div>
-                <div class="header__right">
-                    <ul class="header__top-links">
-                        <li>
-                            <nuxt-link to="/vendor/store-list">
-                                Store Location
-                            </nuxt-link>
-                        </li>
-                        <li>
-                            <nuxt-link to="/page/blank">
-                                Track Your Order
-                            </nuxt-link>
-                        </li>
-                        <li>
-                            <currency-dropdown />
-                        </li>
-                        <li>
-                            <language-swicher />
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div> -->
         <div class="header__content">
             <div class="container">
                 <div class="header__content-left">

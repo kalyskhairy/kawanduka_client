@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-10">
                         <p>
-                            : 100 Buah
+                            : {{ product.stock }} Buah
                         </p>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
                     </div>
                     <div class="col-10">
                         <p>
-                            : 1000 Gram
+                            : {{ product.weight }} Gram
                         </p>
                     </div>
                 </div>

@@ -44,7 +44,7 @@ class ProductRepository {
     }
 
     async getProductsById(payload) {
-        const reponse = await Repository.get(`${baseUrl}/products/${payload}`)
+        const reponse = await Repository.get(`${baseUrl}/v1/product?id=${payload}`)
             .then(response => {
                 return response.data;
             })

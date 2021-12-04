@@ -25,7 +25,7 @@
                             <img src="/img/users/3.jpg" />
                             <figure>
                                 <p>{{ data.email }}</p>
-                                <rating />
+                                <rating :stars="data.stars" />
                             </figure>
                         </div>
                         <div class="ps-widget__content">
@@ -83,18 +83,35 @@ export default {
                     color: 'color:#FFC833;'
                 },
             ],
-            comments: [
+            comment: [
                 {
                     email: 'username@gmail.com',
                     text: 'Wakacau nih bagus banget barangnya guys manteb!',
-                    date: 'June, 20 2021'
+                    date: 'June, 20 2021',
+                    stars: 3
                 },
                 {
                     email: 'username@gmail.com',
                     text: 'Wakacau nih bagus banget barangnya guys manteb gan!',
-                    date: 'June, 20 2021'
+                    date: 'June, 20 2021',
+                    stars: 4
                 },
             ]
+        }
+    },
+    computed: {
+        comments: {
+            get() {
+                return this.comment
+            },
+            set(newvalue) {
+                this.$emit('change', newvalue)
+            }
+        }
+    },
+    methods: {
+        filterComment(stars) {
+            return this.comments = this.comments.filter(x => x.stars == stars.name)
         }
     },
 };

@@ -1,5 +1,7 @@
 <template lang="html">
     <div class="header__actions">
+        <mini-cart v-if="isLoggedIn" />
+        <!-- <mini-cart /> -->
         <nuxt-link to="/account/wishlist" class="header__extra">
             <i class="icon-heart"></i>
             <span>
@@ -7,7 +9,14 @@
             </span>
             
         </nuxt-link>
-        <mini-cart />
+        <nuxt-link to="/account/shopping-cart" class="header__extra">
+            <i class="icon-alarm"></i>
+            <span>
+                <i>0</i>
+            </span>
+            
+        </nuxt-link>
+        
         <div class="ps-block--user-header">
             <div class="ps-block__left">
                 <!-- <i class="icon-user" v-if="!isLoggedIn"><a @click.prevent="handleLogin"></a></i> -->

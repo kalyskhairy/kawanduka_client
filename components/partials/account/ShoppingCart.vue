@@ -40,7 +40,7 @@
                         <div class="ps-block--shopping-total">
                             <div class="ps-block__header">
                                 <p>
-                                    Subtotal <span> ${{ total }}</span>
+                                    Subtotal <span> {{ $helper.convertCurrency(total) }}</span>
                                 </p>
                             </div>
                             <div class="ps-block__content">
@@ -62,7 +62,7 @@
                                     </li>
                                 </ul>
                                 <h3>
-                                    Total <span>${{ amount }}</span>
+                                    Total <span>{{ $helper.convertCurrency(amount) }}</span>
                                 </h3>
                             </div>
                         </div>

@@ -40,7 +40,7 @@
         <div class="col-lg-12 col-md-12 col-sm-12">
             <v-data-table
                 :headers="headers"
-                :items="desserts"
+                :items="products"
                 sort-by="harga"
                 class="elevation-1"
             >
@@ -48,11 +48,6 @@
                 <v-toolbar
                     flat
                 >
-                    <!-- <v-divider
-                    class="mx-4"
-                    inset
-                    vertical
-                    ></v-divider> -->
                     <v-spacer></v-spacer>
                     <v-dialog
                     v-model="dialog"
@@ -93,7 +88,7 @@
                                 md="4"
                             >
                                 <v-text-field
-                                v-model="editedItem.harga"
+                                v-model="editedItem.price"
                                 label="harga"
                                 ></v-text-field>
                             </v-col>
@@ -123,8 +118,8 @@
                                 md="4"
                             >
                                 <v-text-field
-                                v-model="editedItem.status"
-                                label="status (g)"
+                                v-model="editedItem.statusId"
+                                label="status"
                                 ></v-text-field>
                             </v-col>
                             </v-row>
@@ -193,8 +188,19 @@
 </template>
 
 <script>
+import { serializeQuery } from '~/repositories/Repository.js';
 export default {
     layout: 'seller',
+    // async asyncData({ app, redirect, error }) {
+    //   try {
+    //     var products = await app.$sellerApi.getProducts();
+    //     return {
+    //       products
+    //     };
+    //   } catch (err) {
+    //     error({ statusCode: 503, message: "Failed fetch data" });
+    //   }
+    // },
     data() {
         return {
             searchText: '',
@@ -208,20 +214,18 @@ export default {
                 sortable: false,
                 value: 'name',
                 },
-                { text: 'Harga', value: 'harga' },
-                { text: 'Stok', value: 'stok' },
-                { text: 'Kategori', value: 'kategori' },
-                { text: 'Status', value: 'status' },
+                { text: 'Harga', value: 'price' },
+                { text: 'Status', value: 'statusId' },
                 { text: 'Actions', value: 'actions', sortable: false },
             ],
-            desserts: [],
+            products: [],
             editedIndex: -1,
             editedItem: {
                 name: '',
-                harga: 0,
+                price: 0,
                 stok: 0,
                 kategori: 0,
-                status: 0,
+                statusId: 0,
             },
             defaultItem: {
                 name: '',
@@ -230,6 +234,16 @@ export default {
                 kategori: 0,
                 status: 0,
             },
+            params: {
+              productName: '',
+              categoryId: '',
+              religionId: 1,
+              areaId: '',
+              store_id: '',
+              sort: 'asc',
+              page: 1,
+              limit: 10
+            }
         }
     },
     computed: {
@@ -248,99 +262,35 @@ export default {
     },
 
     created () {
-      this.initialize()
+      // this.initialize()
+      this.getProducts()
     },
 
     methods: {
-      initialize () {
-        this.desserts = [
-          {
-            name: 'Frozen Yogurt',
-            harga: 159,
-            stok: 6.0,
-            kategori: 24,
-            status: 4.0,
-          },
-          {
-            name: 'Ice cream sandwich',
-            harga: 237,
-            stok: 9.0,
-            kategori: 37,
-            status: 4.3,
-          },
-          {
-            name: 'Eclair',
-            harga: 262,
-            stok: 16.0,
-            kategori: 23,
-            status: 6.0,
-          },
-          {
-            name: 'Cupcake',
-            harga: 305,
-            stok: 3.7,
-            kategori: 67,
-            status: 4.3,
-          },
-          {
-            name: 'Gingerbread',
-            harga: 356,
-            stok: 16.0,
-            kategori: 49,
-            status: 3.9,
-          },
-          {
-            name: 'Jelly bean',
-            harga: 375,
-            stok: 0.0,
-            kategori: 94,
-            status: 0.0,
-          },
-          {
-            name: 'Lollipop',
-            harga: 392,
-            stok: 0.2,
-            kategori: 98,
-            status: 0,
-          },
-          {
-            name: 'Honeycomb',
-            harga: 408,
-            stok: 3.2,
-            kategori: 87,
-            status: 6.5,
-          },
-          {
-            name: 'Donut',
-            harga: 452,
-            stok: 25.0,
-            kategori: 51,
-            status: 4.9,
-          },
-          {
-            name: 'KitKat',
-            harga: 518,
-            stok: 26.0,
-            kategori: 65,
-            status: 7,
-          },
-        ]
-      },
 
+      async getProducts() {
+        console.log('test products');
+        let params = serializeQuery(this.params);
+        console.log('params -> ', params);
+        let products = await this.$sellerApi.getProducts(params);
+
+        console.log('ini products ', products);
+        this.products = products.data
+      },
       editItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.products.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
       },
 
       deleteItem (item) {
-        this.editedIndex = this.desserts.indexOf(item)
+        this.editedIndex = this.products.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialogDelete = true
       },
 
       deleteItemConfirm () {
-        this.desserts.splice(this.editedIndex, 1)
+        this.products.splice(this.editedIndex, 1)
         this.closeDelete()
       },
 
@@ -362,9 +312,9 @@ export default {
 
       save () {
         if (this.editedIndex > -1) {
-          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+          Object.assign(this.products[this.editedIndex], this.editedItem)
         } else {
-          this.desserts.push(this.editedItem)
+          this.products.push(this.editedItem)
         }
         this.close()
       },

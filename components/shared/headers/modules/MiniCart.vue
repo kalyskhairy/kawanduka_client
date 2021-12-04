@@ -1,7 +1,7 @@
 <template lang="html">
     <div class="ps-cart--mini">
         <a class="header__extra" href="#">
-            <i class="icon-bag2"></i>
+            <i class="icon-cart"></i>
             <span>
                 <i>{{ total }}</i>
             </span>

@@ -1,16 +1,18 @@
 <template lang="html">
     <span class="ps-rating">
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star-o"></i>
+        <i class="fa" :class="star <= stars ? 'fa-star' : 'fa-star-o'" v-for="star in 5" :key="star"></i>
     </span>
 </template>
 
 <script>
 export default {
-    name: 'Rating'
+    name: 'Rating',
+    props: {
+        stars: {
+            type : Number,
+            default : 0
+        }
+    }
 };
 </script>
 

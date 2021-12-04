@@ -9,18 +9,17 @@
         <!-- <market-place2-promotions /> -->
         <categories  
             v-if="categories !== null"
-            collection-slug="computers-and-technologies"
         />
         <product-service 
-            v-if="categories !== null"
-            collection-slug="clothing-and-parel"
+            v-if="products !== null"
+            :products="products.data"
             title="Product dan Servis Terbaru"
         />
-        <product-service 
-            v-if="categories !== null"
+        <!-- <product-service 
+            v-if="products !== null"
             collection-slug="consumer-electrics"
             title="Product dan Servis Teratas"
-        />
+        /> -->
         <!-- <market2-consumer-electronics
             v-if="categories !== null"
             collection-slug="consumer-electrics"
@@ -85,33 +84,44 @@ export default {
     },
     data() {
         return {
-            banner: null
+            banner: null,
+            params: {
+                productName: '',
+                religionId : '',
+                areaId     : '',
+                store_id   : '',
+                sort       : 'asc',
+                page       : 1,
+                limit      : 10
+            }
         }
     },
     computed: {
         ...mapState({
-            collections: state => state.collection.collections,
+            products: state => state.collection.products,
             categories: state => state.collection.categories
-        })
+        }),
+        newestProducts: {
+            get() {
+                let params = this.params;
+                params.sort = 'desc';
+                return params;
+            }
+        }
     },
     async created() {
-        const collectionsSlug = ['deal-of-the-day'];
-        const categoriesSlug = [
-            'clothing-and-parel',
-            'consumer-electrics',
-            'computers-and-technologies',
-            'garden-and-kitchen',
-            'health-and-beauty'
-        ];
-
         await this.$store.dispatch(
-            'collection/getCollectionsBySlugs',
-            collectionsSlug
+            'collection/getProducts',
+            this.params
         );
         await this.$store.dispatch(
-            'collection/getCategoriesBySlugs',
-            categoriesSlug
+            'collection/getCategories'
         );
+        let params = this.params;
+        // params.
+        // await this.$store.dispatch(
+        //     'product/getProducts'
+        // );
 
         this.banner = await this.$publicApi.getBanner();
         

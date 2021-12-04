@@ -12,12 +12,12 @@
                     </a>
                 </li>
                 <li v-for="category in categories" :key="category.id">
-                    <a
-                        href="#"
+                    <nuxt-link
+                        :to="`/kategori/${category.id}`"
                         @click.prevent="handleGotoCategory(category.slug)"
                     >
                         {{ category.name }}
-                    </a>
+                    </nuxt-link>
                 </li>
             </ul>
         </aside>
@@ -105,7 +105,7 @@ export default {
     name: 'ShopWidget',
     computed: {
         ...mapState({
-            categories: state => state.product.categories,
+            categories: state => state.collection.categories,
             brands: state => state.product.brands,
             products: state => state.product.products
         }),
@@ -115,7 +115,7 @@ export default {
     },
     data() {
         return {
-            priceRange: [100, 1000],
+            priceRange: [10000, 1000000],
             selectedBrands: []
         };
     },
@@ -176,6 +176,11 @@ export default {
             );
             await this.$router.push(`/search?${serializeQuery(params)}`);
         }
+    },
+    async created() {
+        await this.$store.dispatch(
+            'collection/getCategories'
+        );
     }
 };
 </script>

@@ -73,6 +73,7 @@
                                                             item-value="id"
                                                             label="Agama"
                                                             outlined
+                                                            disabled
                                                             v-model="selectedValue.religionId"
                                                             ></v-select>
                                                         </div>
@@ -98,13 +99,19 @@
                                                             label="No Telepon"
                                                             outlined
                                                             required
+                                                            disabled
                                                             ></v-text-field>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4">
                                                     <div class="text-center">
-                                                        <img src="/img/users/3.jpg" />
+                                                        <div class="image-upload form-control-file">
+                                                            <label for="file">
+                                                            <img class="upload-image form-control-file" id="uploader-placeholder" :src="uploadPlaceHolder"/>
+                                                            </label>
+                                                            <input id="file" required ref="file" v-on:change="handleFileUpload()" class="form-control-file" type="file" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,10 +159,11 @@ export default {
         // UserInformation,
         BreadCrumb,
         MyOrder,
-        AccountLinks
+        AccountLinks,
     },
     data: () => {
         return {
+            uploadPlaceHolder: 'https://i.ibb.co/61rppSQ/Group-1-1.png',
             name: '',
             phone: '',
             email: '',
@@ -177,6 +185,10 @@ export default {
         };
     },
     methods: {
+        handleFileUpload() {
+            this.selectedValue.avatar = this.$refs.file.files[0];
+            this.uploadPlaceHolder = URL.createObjectURL(this.selectedValue.avatar);
+        },
         async getProfileData() {
             let token = this.$auth.strategy.token.get();
             this.profile = await this.$publicApi.getProfile(token);
@@ -185,13 +197,32 @@ export default {
             this.religions = await this.$publicApi.religion();
         },
         async saveProfile(){
+            this.$blockUi();
             try {
                 let token = this.$auth.strategy.token.get();
+                let params = {}
+                params.name = this.selectedValue.name
+                params.gender = this.selectedValue.gender
+                // params.avatar = this.selectedValue.avatar
+                params.phone  = this.selectedValue.phone
+                params.email  = this.selectedValue.email
+                
                 let response = await this.$publicApi.editProfile(this.selectedValue, token)
-                console.log('response -> ', response);
+                if (response) {
+                    console.log('response -> ', response);
+                    this.$swal.fire({
+                        title: response.message,
+                        position: 'center',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
                 
             } catch (error) {
-                console.log('error save profile -> ', error.response);
+                console.log('error save profile -> ', error);
+            } finally {
+                this.$unBlockUi();
             }
         }
     },

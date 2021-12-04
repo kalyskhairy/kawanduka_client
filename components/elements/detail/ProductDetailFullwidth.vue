@@ -12,8 +12,9 @@
             <default-review />
         </section>
         <product-service 
-        v-if="categories !== null"
+        v-if="products !== null"
         collection-slug="clothing-and-parel"
+        :products="products.data"
         title="Produk dan Servis Terkait"
         />
     </div>
@@ -38,27 +39,31 @@ export default {
     },
     computed: {
         ...mapState({
-            collections: state => state.collection.collections,
-            categories: state => state.collection.categories
+            // collections: state => state.collection.collections,
+            products: state => state.collection.products,
+            product: state => state.product.product
         })
     },
+    data() {
+        return {
+            params: {
+                productName: '',
+                religionId : '',
+                areaId     : '',
+                store_id   : '',
+                sort       : 'asc',
+                page       : 1,
+                limit      : 10,
+                categoryId : ''
+            }
+        }
+    },
     async created() {
-        const collectionsSlug = ['deal-of-the-day'];
-        const categoriesSlug = [
-            'clothing-and-parel',
-            'consumer-electrics',
-            'computers-and-technologies',
-            'garden-and-kitchen',
-            'health-and-beauty'
-        ];
-
+        let params = this.params;
+        params.categoryId = this.product.categoryId
         await this.$store.dispatch(
-            'collection/getCollectionsBySlugs',
-            collectionsSlug
-        );
-        await this.$store.dispatch(
-            'collection/getCategoriesBySlugs',
-            categoriesSlug
+            'collection/getProducts',
+            params
         );
     }
 };

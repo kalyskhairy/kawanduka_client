@@ -2,13 +2,13 @@
     <header class="header header--mobile">
         <div class="header__top">
             <div class="header__left">
-                <p>Welcome to Martfury Online Shopping Store !</p>
+                <p>Welcome to Kawan Duka Online Shopping Store !</p>
             </div>
             <div class="header__right">
                 <ul class="navigation__extra">
                     <li>
                         <nuxt-link to="/vendor/become-a-vendor">
-                            Sell on Martfury
+                            Sell on Kawan Duka
                         </nuxt-link>
                     </li>
                     <li>
@@ -22,7 +22,7 @@
         <div class="navigation--mobile">
             <div class="navigation__left">
                 <nuxt-link to="/" class="ps-logo">
-                    <img src="~/static/img/logo_light.png" alt="martfury" />
+                    <img src="~/static/img/icon_kawanduka.png" alt="kawanDuka" />
                 </nuxt-link>
             </div>
             <mobile-header-actions />

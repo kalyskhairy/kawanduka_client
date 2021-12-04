@@ -10,9 +10,9 @@
                     <div class="swiper-wrapper">
                         <div
                             class="swiper-slide"
-                            v-for="image in product.images"
+                            v-for="image in product"
                         >
-                            <img :src="`${baseURL}${image.url}`" />
+                            <img :src="image.image" />
                         </div>
                     </div>
                     <div class="swiper-nav">

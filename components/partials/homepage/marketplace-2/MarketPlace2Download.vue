@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                         <div class="ps-block__thumbnail">
-                            <img src="~/static/img/app.png" alt="martfury" />
+                            <img src="~/static/img/app.png" alt="kawanduka" />
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">

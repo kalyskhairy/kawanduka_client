@@ -7,13 +7,14 @@
         </div>
         <div class="ps-product__container">
             <nuxt-link to="/shop" class="ps-product__vendor">
-                {{ product.vendor }}
+                <!-- {{ product.vendor }} -->
+                vendor
             </nuxt-link>
             <div class="ps-product__content">
                 <module-product-title :product="product"/>
                 <div class="ps-product__rating">
-                    <rating/>
-                    <span>{{ product.ratingCount }}</span>
+                    <rating :stars="product.star"/>
+                    <span>{{ product.star }}</span>
                 </div>
                 <module-product-price :product="product"/>
             </div>
@@ -72,7 +73,7 @@ export default {
             return baseUrl;
         },
         isSale() {
-            if (this.product.is_sale) {
+            if (this.product.publishedAt.Valid) {
                 return true;
             }
             return false;

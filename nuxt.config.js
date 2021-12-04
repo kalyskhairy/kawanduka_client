@@ -21,6 +21,10 @@ export default {
                 href:
                     'https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext'
             }
+        ],
+        script: [
+          { src: '/vendor/jquery/jquery.min.js'},
+          { src: '/vendor/block-ui/jquery.blockUI.js'}
         ]
     },
 
@@ -44,6 +48,9 @@ export default {
         { src: "~/plugins/apexcharts.js", ssr: false },
         { src: '~/plugins/vue-sweetalert2.js', ssr: false},
         { src: '~/plugins/helper.js', ssr: false},
+        { src: '~/plugins/block-ui'},
+        { src: '~/plugins/buyer-service.js'},
+        { src: '~/plugins/seller-service.js'},
     ],
 
     buildModules: [

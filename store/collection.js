@@ -6,7 +6,8 @@ import Repository, {
 export const state = () => ({
     collections: null,
     categories: null,
-    queries: null
+    queries: null,
+    products: null
 });
 
 export const mutations = {
@@ -19,42 +20,48 @@ export const mutations = {
     },
     setQueries(state, payload) {
         state.queries = payload;
+    },
+    setProducts(state, payload) {
+        state.products = payload;
     }
 };
 
 export const actions = {
-    async getCollectionsBySlugs({ commit }, payload) {
-        console.log('ini payload collectionjs ', payload);
-        console.log('ini commit collectionjs ', commit);
+    async getProducts({ commit }, payload) {
         let query = '';
-        payload.forEach(item => {
+        console.log('collection get product payload -> ', payload);
+        Object.keys(payload).forEach(x => {
             if (query === '') {
-                query = `slug_in=${item}`;
+                query = `${x}=${payload[x]}`
             } else {
-                query = query + `&slug_in=${item}`;
+                query = query + `&${x}=${payload[x]}`
             }
-        });
-        const reponse = await Repository.get(`${baseUrl}/collections?${query}`)
+        })
+        // payload.forEach((item, key) => {
+        //     console.log('key -> ', key);
+        //     if (query === '') {
+        //         query = `slug_in=${item}`;
+        //     } else {
+        //         query = query + `&slug_in=${item}`;
+        //     }
+        // });
+        // const reponse = await Repository.get(`${baseUrl}/collections?${query}`)
+        const reponse = await Repository.get(`${baseUrl}/v1/products?${query}`)
             .then(response => {
-                commit('setCollections', response.data);
+                // console.log('log response -> ', response);
+                commit('setProducts', response.data);
                 return response.data;
             })
             .catch(error => ({ error: JSON.stringify(error) }));
         return reponse;
     },
-    async getCategoriesBySlugs({ commit }, payload) {
-        let query = '';
-        payload.forEach(item => {
-            if (query === '') {
-                query = `slug_in=${item}`;
-            } else {
-                query = query + `&slug_in=${item}`;
-            }
-        });
+    async getCategories({ commit }, payload) {
         const reponse = await Repository.get(
-            `${baseUrl}/product-categories?${query}`
+            // `${baseUrl}/product-categories?${query}`
+            `${baseUrl}/v1/buyer/categories`
         )
             .then(response => {
+                console.log('getCategories -> ', response);
                 commit('setCategories', response.data);
                 return response.data;
             })

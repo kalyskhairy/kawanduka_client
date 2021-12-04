@@ -13,9 +13,9 @@
                             <div class="swiper-wrapper">
                                 <div
                                     class="swiper-slide"
-                                    v-for="image in product.images"
+                                    v-for="image in product.attachment"
                                 >
-                                    <img :src="`${baseURL}${image.url}`" />
+                                    <img :src="image.fileName" />
                                 </div>
                             </div>
                             <div class="swiper-nav">
@@ -41,7 +41,7 @@
                 >
                     <div class="swiper-wrapper">
                         <div
-                            v-for="(image, index) in product.images"
+                            v-for="(image, index) in product.Attachment"
                             :class="
                                 `swiper-slide ${
                                     activeSlide === index ? 'active' : ''
@@ -49,7 +49,7 @@
                             "
                             @click="handleClickSlide(index)"
                         >
-                            <img :src="`${baseURL}${image.url}`" />
+                            <img :src="image.fileName" />
                         </div>
                     </div>
                 </div>

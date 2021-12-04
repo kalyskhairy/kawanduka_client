@@ -1,8 +1,8 @@
 <template lang="html">
     <nuxt-link :to="`/product/${product.id}`">
         <img
-            :src="`${baseUrl}${product.thumbnail.url}`"
-            alt="martfury"
+            :src="product.image"
+            :alt="product.name"
         />
     </nuxt-link>
 </template>
@@ -20,9 +20,9 @@ export default {
     },
     computed: {
 
-        baseUrl() {
-            return baseUrl;
-        },
+        // baseUrl() {
+        //     return baseUrl;
+        // },
     },
 
 };
