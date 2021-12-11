@@ -14,6 +14,9 @@
             </div>
         </div>
     </div>
+    <div v-if="data.length == 0">
+        <p class="text-center mt-2">Tidak ada data notifikasi</p>
+    </div>
 </div>
 </template>
 
@@ -27,35 +30,6 @@ export default {
     },
     data() {
         return {
-            tableData: [
-                {
-                    key: '1',
-                    title:
-                        'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor',
-                    dateCreate: '20-1-2020',
-                    tag: 'sale'
-                },
-                {
-                    key: '2',
-                    title:
-                        'Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur',
-                    dateCreate: '21-1-2020',
-                    tag: 'new'
-                },
-                {
-                    key: '3',
-                    title: ' Et harum quidem rerum',
-                    dateCreate: '21-1-2020',
-                    tag: 'new'
-                },
-                {
-                    key: '4',
-                    title:
-                        'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet',
-                    dateCreate: '21-1-2020',
-                    tag: 'sale'
-                }
-            ]
         };
     }
 };

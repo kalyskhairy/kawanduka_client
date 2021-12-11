@@ -89,7 +89,7 @@ export default {
                 url: '/shop'
             },
             {
-                text: product.title
+                text: product.name
             }
         ];
     },

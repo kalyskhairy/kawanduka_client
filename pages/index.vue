@@ -12,7 +12,7 @@
         />
         <product-service 
             v-if="products !== null"
-            :products="products.data"
+            :products="getProducts"
             title="Product dan Servis Terbaru"
         />
         <!-- <product-service 
@@ -98,7 +98,7 @@ export default {
     },
     computed: {
         ...mapState({
-            products: state => state.collection.products,
+            products: state => state.product.products,
             categories: state => state.collection.categories
         }),
         newestProducts: {
@@ -107,16 +107,30 @@ export default {
                 params.sort = 'desc';
                 return params;
             }
+        },
+        getProducts: {
+            get() {
+                return this.products.data;
+            },
+            set(newvalue) {
+                this.$emit('change', newvalue);
+            }
         }
     },
-    async created() {
+    async mounted() {
         await this.$store.dispatch(
-            'collection/getProducts',
+            'product/getProducts',
             this.params
         );
         await this.$store.dispatch(
             'collection/getCategories'
         );
+        await this.$store.dispatch(
+            'cart/getCartProducts'
+        )
+        await this.$store.dispatch(
+            'product/getWishlistProducts'
+        )
         let params = this.params;
         // params.
         // await this.$store.dispatch(

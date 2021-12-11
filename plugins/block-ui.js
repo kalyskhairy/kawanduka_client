@@ -3,7 +3,7 @@ export default (ctx, inject) => {
 
     const blockUi = () => {
         $.blockUI({
-            message: '<img src="/img/loading.gif" /> ',
+            message: '<img src="/img/loading-gif-png.gif" /> ',
             css: {
                 border:         '0',
                 backgroundColor:'transparent',
@@ -13,7 +13,7 @@ export default (ctx, inject) => {
     
     const blockUiSaving = () => {
       $.blockUI({
-          message: `<img src="/images/loading.gif" />
+          message: `<img src="/img/loading.gif" />
               <div class="loading-text">
                   <div class="loading__letter_text">S</div>
                   <div class="loading__letter_text">A</div>

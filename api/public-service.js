@@ -37,18 +37,6 @@ export default $axios => ({
         return $axios.$post(`/v1/forgot-password?email=${params.email}`)
         // return $axios.$post(`/v1/forgot-password`, defaultConfigs)
     },
-    notificationBuyer(header){
-        return $axios.$get('/v1/notification?type=buyer', {
-            headers: {
-                'Authorization': `${header}`
-            }
-        });
-    },
-    notificationSeller(header){
-        return $axios.$get('/v1/notification?type=seller', {
-            headers: {
-                'Authorization': `${header}`
-            }
-        });
-    }
+    
+   
 })

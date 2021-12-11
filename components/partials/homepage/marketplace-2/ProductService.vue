@@ -1,7 +1,7 @@
 <template lang="html">
     <section
         class="ps-product-list ps-section--carousel-outside"
-        id="market2-technology"
+        id="market2-product-service"
     >
         <div class="container">
             <div class="ps-section__header">
@@ -40,7 +40,6 @@ export default {
     name: 'ProductService',
     components: { CarouselArrows, ProductDefault },
     props: {
-        // collectionSlug: [Array, Object],
         title: {
             type: String,
             default: 'Title'
@@ -60,8 +59,8 @@ export default {
             carouselSetting: {
                 ...carouselStandard,
                 navigation: {
-                    nextEl: '#market2-technology .swiper-next',
-                    prevEl: '#market2-technology .swiper-prev'
+                    nextEl: '#market2-product-service .swiper-next',
+                    prevEl: '#market2-product-service .swiper-prev'
                 }
             },
         };

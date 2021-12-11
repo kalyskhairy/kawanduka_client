@@ -15,7 +15,7 @@
                     :title="'Agama'"
                     :data="agama"
                     /> -->
-                    <div id="shop-widgets">
+                    <!-- <div id="shop-widgets">
                         <aside class="widget widget_shop">
                             <div class="row">
                                 <div class="col-12">
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                         </aside>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="ps-layout__right">

@@ -16,6 +16,7 @@ export default {
     },
     transition: 'zoom',
     middleware: 'authentication',
+    layout: 'layout-market-place-2',
     async asyncData({ app, redirect, error }) {
         try {
         var buyerAddres = await app.$buyerApi.getBuyerAddress();

@@ -30,7 +30,7 @@
                 title="Add to wishlist"
                 @click.prevent="handleAddItemToWishlist"
             >
-                <i class="icon-heart"></i>
+                <i class="icon-heart" :style="isWishlist ? 'color:red;' : ''"></i>
             </a>
         </li>
         <li>
@@ -65,34 +65,59 @@ export default {
             cartItems: state => state.cart.cartItems,
             currency: state => state.app.currency
         }),
+        isWishlist() {
+            if (this.product.isWishlist) {
+                return true;
+            }
+            return false;
+        }
     },
     methods: {
-        handleAddToCart() {
+        async handleAddToCart() {
             let item = {
-                id: this.product.id,
-                quantity: 1,
-                price: this.product.price
+                productId: this.product.id,
+                qty: 1,
             };
             this.$store.dispatch('cart/addProductToCart', item);
-            this.getCartProduct(this.cartItems);
+            this.$store.dispatch('cart/getCartProducts')
             this.$notify({
                 group: 'addCartSuccess',
                 title: 'Success!',
-                text: `${this.product.title} has been added to your cart!`
+                text: `${this.product.name} has been added to your cart!`
             });
         },
 
-        handleAddItemToWishlist() {
-            let item = {
-                id: this.product.id
-            };
+        async handleAddItemToWishlist() {
+            if (this.product.isWishlist) {
 
-            this.$store.dispatch('wishlist/addItemToWishlist', item);
-            this.$notify({
-                group: 'addCartSuccess',
-                title: 'Add to wishlist!',
-                text: `${this.product.title} has been added to your wishlist !`
-            });
+                await this.$store.dispatch('product/removeWishlistProduct', this.product.id)
+
+                this.$notify({
+                    group: 'addCartSuccess',
+                    title: 'Remove to wishlist!',
+                    text: `${this.product.name} has been remove to your wishlist !`
+                });
+            } else {
+
+                await this.$store.dispatch('product/addWishlistProduct', this.product.id);
+    
+                this.$notify({
+                    group: 'addCartSuccess',
+                    title: 'Add to wishlist!',
+                    text: `${this.product.name} has been added to your wishlist !`
+                });
+            }
+            
+            await this.$store.dispatch('product/getWishlistProducts');
+            // await this.$store.dispatch('product/getProducts', {
+            //     productName: '',
+            //     religionId : '',
+            //     areaId     : '',
+            //     store_id   : '',
+            //     sort       : 'asc',
+            //     page       : 1,
+            //     limit      : 10
+            // });
         },
 
         handleAddItemToCompare() {
@@ -113,7 +138,7 @@ export default {
                 listOfIds.push(item.id);
             });
             const response = await this.$store.dispatch(
-                'product/getCartProducts',
+                'cart/getCartProducts',
                 listOfIds
             );
             if (response) {

@@ -45,7 +45,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="col-lg-12 col-md-12 col-sm-12" v-if="data.length == 0">
                                             <div class="card">
                                                 <div class="card-body" style="padding:10rem;">
                                                     <div class="row">
@@ -205,18 +205,18 @@ export default {
                 }
             ],
             data: [
-                {
-                    name: 'wakacau',
-                    alamat: 'Jalan Sudirman no 666, Jakarta Selatan',
-                    alamat1: 'Jakarta, 20123, Indonesia',
-                    phone: '08193093939'
-                },
-                {
-                    name: 'wakacau',
-                    alamat: 'Jalan Sudirman no 666, Jakarta Selatan',
-                    alamat1: 'Jakarta, 20123, Indonesia',
-                    phone: '08193093939'
-                },
+                // {
+                //     name: 'wakacau',
+                //     alamat: 'Jalan Sudirman no 666, Jakarta Selatan',
+                //     alamat1: 'Jakarta, 20123, Indonesia',
+                //     phone: '08193093939'
+                // },
+                // {
+                //     name: 'wakacau',
+                //     alamat: 'Jalan Sudirman no 666, Jakarta Selatan',
+                //     alamat1: 'Jakarta, 20123, Indonesia',
+                //     phone: '08193093939'
+                // },
             ],
             descriptionLimit: 60,
             entries: [],
@@ -234,7 +234,22 @@ export default {
             console.log(
                 'ddistrictName ', this.districtName
             );
+        },
+        async getDataAddress() {
+            this.$blockUi();
+            try {
+                this.data = await this.$buyerApi.getDataAddress();
+                
+            } catch (error) {
+                console.log('ERROR ---> ', error);
+            } finally {
+                this.$unBlockUi();
+            }
+
         }
+    },
+    mounted () {
+        // this.getDataAddress();
     },
 };
 </script>

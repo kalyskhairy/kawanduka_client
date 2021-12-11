@@ -37,23 +37,27 @@ export const actions = {
                 query = query + `&${x}=${payload[x]}`
             }
         })
-        // payload.forEach((item, key) => {
-        //     console.log('key -> ', key);
-        //     if (query === '') {
-        //         query = `slug_in=${item}`;
-        //     } else {
-        //         query = query + `&slug_in=${item}`;
-        //     }
-        // });
-        // const reponse = await Repository.get(`${baseUrl}/collections?${query}`)
-        const reponse = await Repository.get(`${baseUrl}/v1/products?${query}`)
-            .then(response => {
-                // console.log('log response -> ', response);
-                commit('setProducts', response.data);
-                return response.data;
-            })
-            .catch(error => ({ error: JSON.stringify(error) }));
-        return reponse;
+        if (this.$auth.strategy.token.get()) {
+            console.log('masuk sini ada token');
+            const reponse = await this.$buyerApi.getProducts(query)
+                .then(response => {
+                    console.log('log response -> ', response);
+                    commit('setProducts', response);
+                    return response.data;
+                })
+                .catch(error => ({ error: JSON.stringify(error) }));
+            return reponse;
+        } else {
+            console.log('masuk sini ga ada token');
+            const reponse = await Repository.get(`${baseUrl}/v1/products?${query}`)
+                .then(response => {
+                    console.log('log response -> ', response);
+                    commit('setProducts', response.data);
+                    return response.data.data;
+                })
+                .catch(error => ({ error: JSON.stringify(error) }));
+            return reponse;
+        }
     },
     async getCategories({ commit }, payload) {
         const reponse = await Repository.get(

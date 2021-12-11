@@ -1,13 +1,14 @@
 const calculateAmount = obj =>
     Object.values(obj)
-        .reduce((acc, { quantity, price }) => acc + quantity * price, 0)
+        .reduce((acc, { qty, price }) => acc + qty * price, 0)
         .toFixed(2);
 
 export const state = () => ({
     total: 0,
     amount: 0,
     cartItems: [],
-    loading: false
+    loading: false,
+    cartProducts: [],
 });
 
 export const mutations = {
@@ -22,19 +23,28 @@ export const mutations = {
     },
 
     addItem(state, payload) {
+        console.log('payload addItem -> ', payload);
+        console.log('state.cartItems -> ', state.cartItems);
         if (state.cartItems !== null) {
-            let existItem = state.cartItems.find(item => item.id === payload.id);
-            if (existItem) {
-                existItem.quantity += payload.quantity;
-            } else {
-                state.cartItems.push(payload);
-            }
-            state.total++;
-        } else {
-            state.cartItems.push(payload);
-            state.total = 1;
+            let total = 0;
+            let amount = 0;
+            state.cartItems.map(item => {
+                total += item.qty;
+                amount += item.totalPrice; 
+                console.log('item --> ', item);
+                state.total = total;
+                state.amount = amount;
+            });
         }
-        state.amount = calculateAmount(state.cartItems);
+        // state.amount = calculateAmount(state.cartItems);
+    },
+
+    setCartProducts(state, payload) {
+        state.cartProducts = payload;
+    },
+
+    setCartItem(state, payload) {
+        state.cartItems = payload
     },
 
     removeItem: (state, payload) => {
@@ -75,32 +85,50 @@ export const mutations = {
 };
 
 export const actions = {
-    addProductToCart({ commit, state }, payload) {
-        commit('addItem', payload);
-        const cookieParams = {
-            total: state.total,
-            amount: state.amount,
-            cartItems: state.cartItems
-        };
 
-        this.$cookies.set('cart', cookieParams, {
-            path: '/',
-            maxAge: 60 * 60 * 24 * 7
-        });
+    async getCartProducts({ commit }, payload) {
+        const reponse = await this.$buyerApi.getProductCart()
+            .then(response => {
+                console.log('response getCartProduct -> ', response);
+                commit('setCartProducts', response);
+                commit('setCartItem', response);
+                commit('addItem', response);
+                return response;
+            })
+            .catch(error => ({ error: JSON.stringify(error) }));
+        return reponse;
+    },
+    async addProductToCart({ commit, state }, payload) {
+        const reponse = await this.$buyerApi.addProductToCart(payload)
+            .then(response => {
+                if (response) {
+                    console.log('response --> ', response);
+                }
+            })
+            .catch(error => ({ error: JSON.stringify(error) }))
+        return reponse;
     },
 
-    removeProductFromCart({ commit, state }, payload) {
-        commit('removeItem', payload);
-        const cookieParams = {
-            total: state.total,
-            amount: state.amount,
-            cartItems: state.cartItems
-        };
+    async removeProductFromCart({ commit, state }, payload) {
+        const reponse = await this.$buyerApi.deleteProductCart(payload)
+            .then(response => {
+                if (response) {
+                    console.log('response remove -> ', response);
+                }
+            })
+            .catch(error => ({ error: JSON.stringify(error)}))
+        return reponse;
+        // commit('removeItem', payload);
+        // const cookieParams = {
+        //     total: state.total,
+        //     amount: state.amount,
+        //     cartItems: state.cartItems
+        // };
 
-        this.$cookies.set('cart', cookieParams, {
-            path: '/',
-            maxAge: 60 * 60 * 24 * 7
-        });
+        // this.$cookies.set('cart', cookieParams, {
+        //     path: '/',
+        //     maxAge: 60 * 60 * 24 * 7
+        // });
     },
 
     increaseCartItemQuantity({ commit, state }, payload) {

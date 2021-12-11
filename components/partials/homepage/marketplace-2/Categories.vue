@@ -1,7 +1,7 @@
 <template lang="html">
     <section
         class="ps-product-list ps-section--carousel-outside"
-        id="market2-technology"
+        id="market2-category"
     >
         <div class="container">
             <div class="ps-section__header">
@@ -57,8 +57,8 @@ export default {
             carouselSetting: {
                 ...carouselStandard,
                 navigation: {
-                    nextEl: '#market2-technology .swiper-next',
-                    prevEl: '#market2-technology .swiper-prev'
+                    nextEl: '#market2-category .swiper-next',
+                    prevEl: '#market2-category .swiper-prev'
                 }
             },
         };

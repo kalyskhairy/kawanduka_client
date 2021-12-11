@@ -22,17 +22,19 @@
                     <div class="ps-page__content">
                         <div class="ps-section--account-setting">
                             <div class="ps-section__header">
-                                <h3>Pesanan Saya</h3>
+                                <h3>Notifikasi</h3>
                             </div>
                             <div class="ps-section__content">
                                 <v-tabs>
                                     <v-tab :href="`#pembeli`">Pembeli</v-tab>
                                     <v-tab-item :value="`pembeli`">
-                                        <card-notifications :data="dataPembeli"/>
+                                        <!-- <card-notifications :data="dataPembeli"/> -->
+                                        <card-notifications :data="notifications.buyer"/>
                                     </v-tab-item>
                                     <v-tab :href="`#penjual`">Penjual</v-tab>
                                     <v-tab-item :value="`penjual`">
-                                        <card-notifications :data="dataPenjual"/>
+                                        <!-- <card-notifications :data="dataPenjual"/> -->
+                                        <card-notifications :data="notifications.seller"/>
                                     </v-tab-item>
                                 </v-tabs>
                             </div>
@@ -59,31 +61,10 @@ export default {
                     icon: 'icon-user'
                 },
                 {
-                    text: 'Notifications',
-                    url: '/account/notifications',
-                    icon: 'icon-alarm-ringing',
-                    active: true
-                },
-                {
-                    text: 'Invoices',
-                    url: '/account/invoices',
-                    icon: 'icon-papers'
-                },
-                {
                     text: 'Address',
                     url: '/account/addresses',
                     icon: 'icon-map-marker'
                 },
-                {
-                    text: 'Recent Viewed Product',
-                    url: '/account/recent-viewed-product',
-                    icon: 'icon-store'
-                },
-                {
-                    text: 'Wishlist',
-                    url: '/account/wishlist',
-                    icon: 'icon-heart'
-                }
             ],
             dataPembeli: [
                 {
@@ -116,10 +97,10 @@ export default {
         };
     },
     async mounted () {
-        let token = this.$auth.strategy.token.get();
-        this.notifications.buyer = await this.$publicApi.notificationBuyer(token);
-        this.notifications.seller = await this.$publicApi.notificationSeller(token);
+        this.notifications.buyer = await this.$buyerApi.notificationBuyer();
+        this.notifications.seller = await this.$sellerApi.notificationSeller();
     },
+
 };
 </script>
 

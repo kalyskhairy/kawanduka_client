@@ -14,7 +14,7 @@ export const actions = {
         const cookieParams = {
             isLoggedIn: state.isLoggedIn
         };
-
+        console.log('cookieparams login => ', cookieParams);
         this.$cookies.set('auth', cookieParams, {
             path: '/',
             maxAge: 60 * 60 * 24 * 7

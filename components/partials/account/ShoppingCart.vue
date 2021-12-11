@@ -2,7 +2,8 @@
     <div class="ps-section--shopping ps-shopping-cart">
         <div class="container">
             <div class="ps-section__header">
-                <h1>Shopping Cart</h1>
+                <!-- <h1>Shopping Cart</h1> -->
+                <h1>Keranjang Belanja</h1>
             </div>
             <div class="ps-section__content">
                 <table-shopping-cart v-if="cartProducts !== null" />
@@ -40,7 +41,7 @@
                         <div class="ps-block--shopping-total">
                             <div class="ps-block__header">
                                 <p>
-                                    Subtotal <span> {{ $helper.convertCurrency(total) }}</span>
+                                    Subtotal <span> {{ total }}</span>
                                 </p>
                             </div>
                             <div class="ps-block__content">
@@ -53,10 +54,10 @@
                                                 :to="`/product/${product.id}`"
                                                 class="ps-product__title"
                                             >
-                                                {{ product.title }}
+                                                {{ product.name }}
                                                 <br />
                                                 x
-                                                {{ cartItems[index].quantity }}
+                                                {{ product.qty }}
                                             </nuxt-link>
                                         </span>
                                     </li>
@@ -80,7 +81,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 import ProductShoppingCart from '~/components/elements/product/ProductShoppingCart';
 import TableShoppingCart from '~/components/partials/account/modules/TableShoppingCart';
 
@@ -92,9 +93,15 @@ export default {
             cartItems: state => state.cart.cartItems,
             total: state => state.cart.total,
             amount: state => state.cart.amount,
-            cartProducts: state => state.product.cartProducts
+            // cartProducts: state => state.product.cartProducts
+        }),
+        ...mapActions({
+            cartProducts: 'cart/getCartProducts'
         })
-    }
+    },
+    mounted () {
+        console.log('cartProduct --> ',this.cartProducts);
+    },
 };
 </script>
 

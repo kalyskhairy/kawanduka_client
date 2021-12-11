@@ -39,10 +39,11 @@ export default {
             });
             let queries = [];
             cartItemsOnCookie.cartItems.forEach(item => {
+                console.log('cookieCartItems ===> ', item);
                 queries.push(item.id);
             });
             if (queries.length > 0) {
-                await this.$store.dispatch('product/getCartProducts', queries);
+                await this.$store.dispatch('cart/getCartProducts', queries);
             }
         }
     }

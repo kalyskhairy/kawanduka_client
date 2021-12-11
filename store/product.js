@@ -1,16 +1,21 @@
 import Repository, { serializeQuery } from '~/repositories/Repository.js';
 import { baseUrl } from '~/repositories/Repository';
 
+const getWishlist = _ => {
+    let response = this.$buyerApi.getWishlishtProducts();
+    return response;
+} 
+
 export const state = () => ({
     product: null,
     products: null,
     searchResults: null,
-    cartProducts: null,
     wishlistItems: null,
     compareItems: null,
     brands: null,
     categories: null,
-    total: 0
+    total: 0,
+    wishlistTotal: 0
 });
 
 export const mutations = {
@@ -18,9 +23,6 @@ export const mutations = {
         state.products = payload;
     },
 
-    setCartProducts(state, payload) {
-        state.cartProducts = payload;
-    },
     setWishlistItems(state, payload) {
         state.wishlistItems = payload;
     },
@@ -46,21 +48,46 @@ export const mutations = {
 
     setTotal(state, payload) {
         state.total = payload;
+    },
+
+    setWishlistTotal(state, payload) {
+        state.wishlistTotal = payload
     }
 };
 
 export const actions = {
     async getProducts({ commit }, payload) {
-        const reponse = await Repository.get(
-            `${baseUrl}/v1/products?${serializeQuery(payload)}`
-        )
-            .then(response => {
-                commit('setProducts', response.data);
-                commit('setSearchResults', response.data.data);
-                return response.data;
-            })
-            .catch(error => ({ error: JSON.stringify(error) }));
-        return reponse;
+        let query = '';
+        console.log('collection get product payload -> ', payload);
+        Object.keys(payload).forEach(x => {
+            if (query === '') {
+                query = `${x}=${payload[x]}`
+            } else {
+                query = query + `&${x}=${payload[x]}`
+            }
+        })
+        if (this.$auth.strategy.token.get()) {
+            console.log('masuk sini ada token');
+            const reponse = await this.$buyerApi.getProducts(query)
+                .then(response => {
+                    console.log('response ==> ' , response);
+                    commit('setProducts', response);
+                    commit('setSearchResults', response);
+                    return response.data;
+                })
+                .catch(error => ({ error: JSON.stringify(error) }));
+            return reponse;
+        } else {
+            console.log('masuk sini ga ada token');
+            const reponse = await Repository.get(`${baseUrl}/v1/products?${query}`)
+                .then(response => {
+                    console.log('log response -> ', response);
+                    commit('setProducts', response.data);
+                    return response.data.data;
+                })
+                .catch(error => ({ error: JSON.stringify(error) }));
+            return reponse;
+        }
     },
 
     async getTotalRecords({ commit }, payload) {
@@ -77,6 +104,7 @@ export const actions = {
         const reponse = await Repository.get(`${baseUrl}/v1/product?id=${payload}`)
             .then(response => {
                 commit('setProduct', response.data);
+                console.log('response getProductID-> ', reseponse);
                 return response.data;
             })
             .catch(error => ({ error: JSON.stringify(error) }));
@@ -96,42 +124,32 @@ export const actions = {
         return reponse;
     },
 
-    async getCartProducts({ commit }, payload) {
-        let query = '';
-        payload.forEach(item => {
-            if (query === '') {
-                query = `id=${item}`;
-            } else {
-                query = query + `&id=${item}`;
-            }
-        });
-        const reponse = await Repository.get(`${baseUrl}/products?${query}`)
-            .then(response => {
-                commit('setCartProducts', response.data);
-                return response.data;
-            })
-            .catch(error => ({ error: JSON.stringify(error) }));
+    async getWishlistProducts({ commit }, payload) {
+        console.log('==== GET WISHLIST ====');
+        const reponse = await this.$buyerApi.getWishlists()
+                        .then(response => {
+                            commit('setWishlistItems', response)
+                            console.log('response get wishlist -> ', response);
+                            commit('setWishlistTotal', response.length)
+                            return response;
+                        })
+                        .catch(error => ({ error : JSON.stringify(error) }))
         return reponse;
     },
+    async addWishlistProduct({ commit }, payload) {
+        let reponse = await this.$buyerApi.addWishlist({
+            productId : payload
+        }).then(response => {
+            console.log('addWishlist --> ', response)
+        }).catch(error => ({ error: JSON.stringify(error) }))
 
-    async getWishlishtProducts({ commit }, payload) {
-        let query = '';
-        payload.forEach(item => {
-            if (query === '') {
-                query = `id=${item}`;
-            } else {
-                query = query + `&id=${item}`;
-            }
-        });
-        const reponse = await Repository.get(`${baseUrl}/products?${query}`)
-            .then(response => {
-                commit('setWishlistItems', response.data);
-                return response.data;
-            })
-            .catch(error => ({ error: JSON.stringify(error) }));
-        return reponse;
     },
-
+    async removeWishlistProduct({ commit }, payload) {
+        let reponse = await this.$buyerApi.deleteWishlist(payload)
+                    .then(response => {
+                        console.log('remove wishlist -> ', response);
+                    }).catch(error => ({ error: JSON.stringify(error) }))
+    },
     async getCompareProducts({ commit }, payload) {
         let query = '';
         payload.forEach(item => {

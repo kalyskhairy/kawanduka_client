@@ -7,24 +7,24 @@
                         <div class="swiper-slide">
                             <nuxt-link to="/shop">
                                 <img
-                                    src="https://sweeneyfuneraldirectorsboyle.files.wordpress.com/2018/10/coffin-27.png"
-                                    alt="martfury"
+                                    src="/img/kaduk-banner1.jpg"
+                                    alt="banner1"
                                 />
                             </nuxt-link>
                         </div>
                         <div class="swiper-slide">
                             <nuxt-link to="/shop">
                                 <img
-                                    src="https://images.unsplash.com/photo-1512056495345-913a0c261dc8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Ym91cXVldHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
-                                    alt="martfury"
+                                    src="/img/kaduk-banner2.jpg"
+                                    alt="banner2"
                                 />
                             </nuxt-link>
                         </div>
                         <div class="swiper-slide">
                             <nuxt-link to="/shop">
                                 <img
-                                    src="https://awsimages.detik.net.id/community/media/visual/2021/06/26/ilustrasi-virus-corona-covid-19-3_169.jpeg?w=700&q=90"
-                                    alt="martfury"
+                                    src="/img/kaduk-banner3.jpg"
+                                    alt="banner3"
                                 />
                             </nuxt-link>
                         </div>
@@ -51,7 +51,7 @@
                             alt="martfury"
                         />
                         <img
-                            src="~/static/img/banner-kanan-1.jpg"
+                            src="~/static/img/banner-ads-down.jpg"
                             alt="martfury"
                         />
                     </a>

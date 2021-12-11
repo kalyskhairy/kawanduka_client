@@ -22,7 +22,7 @@
             <div class="ps-cart__footer">
                 <h3>
                     {{ $t('header.miniCart.subTotal') }}
-                    <strong>${{ amount }}</strong>
+                    <strong>{{ $helper.convertCurrency(amount) }}</strong>
                 </h3>
                 <figure>
                     <div>
@@ -55,13 +55,17 @@ import Loading from '~/components/elements/commons/Loading';
 export default {
     name: 'MiniCart',
     components: { Loading, ProductMiniCart },
+    data() {
+        return {
+        }
+    },
     computed: {
         ...mapState({
             total: state => state.cart.total,
             amount: state => state.cart.amount,
             loading: state => state.cart.loading,
             cartItems: state => state.cart.cartItems,
-            cartProducts: state => state.product.cartProducts
+            cartProducts: state => state.cart.cartProducts
         }),
         baseUrl() {
             return baseUrl;
@@ -72,7 +76,7 @@ export default {
 
 <style lang="scss" scoped>
 .ps-cart__items {
-    min-height: 150px;
+    min-height: 50px;
     &.no-products {
         min-height: 50px;
     }

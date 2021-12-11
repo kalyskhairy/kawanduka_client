@@ -3,9 +3,10 @@
         <mini-cart v-if="isLoggedIn" />
         <!-- <mini-cart /> -->
         <nuxt-link to="/account/wishlist" class="header__extra">
+            <!-- <i class="icon-heart" style="color:red;"></i> -->
             <i class="icon-heart"></i>
             <span>
-                <i>0</i>
+                <i>{{ wishlistTotal }}</i>
             </span>
             
         </nuxt-link>
@@ -91,13 +92,20 @@ export default {
     methods: {
         handleLogout() {
             this.$store.dispatch('authen/setAuthStatus', false);
+            this.$cookies.remove('auth');
+            this.$auth.logout();
+            // window.location.href = '/'
         }
     },
     computed: {
         // isLogin() {
         //     return this.$store.state.isLogin 
         // }
-        ...mapState('authen', ['isLoggedIn'])
+        // ...mapState({'authen', ['isLoggedIn']})
+        ...mapState({
+            isLoggedIn : state => state.authen.isLoggedIn,
+            wishlistTotal: state => state.product.wishlistTotal
+        })
     },
 };
 </script>

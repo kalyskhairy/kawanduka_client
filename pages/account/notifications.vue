@@ -27,7 +27,7 @@ export default {
                     url: '/'
                 },
                 {
-                    text: 'Invoices'
+                    text: 'Notifikasi'
                 }
             ]
         };
