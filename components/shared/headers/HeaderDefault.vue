@@ -6,7 +6,7 @@
                     <nuxt-link to="/" class="ps-logo">
                         <img src="/img/logo_light.png" alt="martfury" />
                     </nuxt-link>
-                    <div class="menu--product-categories">
+                    <!-- <div class="menu--product-categories">
                         <div class="menu__toggle">
                             <i class="icon-menu"></i>
                             <span> {{ $t('header.shopByDepartment') }} </span>
@@ -14,7 +14,7 @@
                         <div class="menu__content">
                             <menu-categories />
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="header__center">
                     <search-header />

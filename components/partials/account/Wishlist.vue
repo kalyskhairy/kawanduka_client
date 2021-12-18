@@ -53,19 +53,19 @@
                                                             data-toggle="tooltip"
                                                             data-placement="top"
                                                             title="Add to cart"
-                                                            @click.prevent="handleAddItemToWishlist(product.id, product.name)"
+                                                            @click.prevent="handleAddItemToWishlist(product.productId, product.name)"
                                                         >
                                                             <!-- <i class="icon-bag2"></i> -->
-                                                            <img src="/img/bin.png" style="max-width:40%!important;" />
+                                                            <img src="/img/bin.png" style="max-width:40%!important;max-height:20px !important;" />
                                                         </a>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="ps-product__container">
-                                                <nuxt-link to="/shop" class="ps-product__vendor">
-                                                    <!-- {{ product.vendor }} -->
+                                                <!-- <nuxt-link to="/shop" class="ps-product__vendor">
+                                                    {{ product.vendor }}
                                                     vendor
-                                                </nuxt-link>
+                                                </nuxt-link> -->
                                                 <div class="ps-product__content">
                                                     <module-product-title :product="product"/>
                                                     <div class="ps-product__rating">

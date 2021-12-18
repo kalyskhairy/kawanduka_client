@@ -11,7 +11,7 @@
                 <i class="icon-bag2"></i>
             </a>
         </li>
-        <li>
+        <!-- <li>
             <a
                 to="#"
                 data-toggle="tooltip"
@@ -21,7 +21,7 @@
             >
                 <i class="icon-eye"></i>
             </a>
-        </li>
+        </li> -->
         <li>
             <a
                 href="#"
@@ -33,7 +33,7 @@
                 <i class="icon-heart" :style="isWishlist ? 'color:red;' : ''"></i>
             </a>
         </li>
-        <li>
+        <!-- <li>
             <a
                 to="#"
                 data-toggle="tooltip"
@@ -43,7 +43,7 @@
             >
                 <i class="icon-chart-bars"></i>
             </a>
-        </li>
+        </li> -->
     </ul>
 </template>
 

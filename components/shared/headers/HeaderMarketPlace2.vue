@@ -9,7 +9,7 @@
                     <nuxt-link to="/" class="ps-logo">
                         <img src="~/static/img/kawanduka_logo_2.png" alt="martfury" />
                     </nuxt-link>
-                    <div class="menu--product-categories">
+                    <!-- <div class="menu--product-categories">
                         <div class="menu__toggle">
                             <i class="icon-menu"></i>
                             <span> Shop by Department</span>
@@ -17,7 +17,7 @@
                         <div class="menu__content">
                             <menu-categories />
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="header__content-center">
                     <search-header />

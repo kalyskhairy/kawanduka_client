@@ -9,7 +9,7 @@
                 <table-shopping-cart v-if="cartProducts !== null" />
                 <p v-else>Cart empty</p>
                 <div class="ps-section__cart-actions">
-                    <nuxt-link to="/shop" class="ps-btn">
+                    <nuxt-link to="/" class="ps-btn">
                         <i class="icon-arrow-left mr-2"></i>
                         Back to Shop
                     </nuxt-link>
@@ -18,7 +18,7 @@
             <div class="ps-section__footer">
                 <div class="row justify-content-end">
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
-                        <figure>
+                        <!-- <figure>
                             <figcaption>Coupon Discount</figcaption>
                             <div class="form-group">
                                 <input
@@ -32,7 +32,7 @@
                                     Apply
                                 </button>
                             </div>
-                        </figure>
+                        </figure> -->
                     </div>
                     <div
                         class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "

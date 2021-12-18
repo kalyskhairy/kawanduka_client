@@ -10,7 +10,7 @@
             </span>
             
         </nuxt-link>
-        <nuxt-link to="/account/shopping-cart" class="header__extra">
+        <nuxt-link to="/account/notifications" class="header__extra">
             <i class="icon-alarm"></i>
             <span>
                 <i>0</i>
